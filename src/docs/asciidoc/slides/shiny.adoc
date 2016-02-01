@@ -1,3 +1,35 @@
 
 == Shiny New Stuff!
 
+Arrow functions
+
+Block scope
+
+Modules
+
+Iterators 
+  Generators
+
+Promises 
+  async, await
+
+Parameters 
+  default parameters
+  rest parameters
+
+Destructuring assignement
+  spread operator
+
+Template literals
+
+Object literals
+
+Classes, inheritance, proxies, properties
+
+Set, Maps, Arrays
+
+Number, maths
+
+RegExps
+
+Loads!

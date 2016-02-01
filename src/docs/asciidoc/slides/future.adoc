@@ -1,2 +1,17 @@
 
 == Into The Future
+
+So, once we're up to speed on ES6 can we relax for the next 5 and half years?  
+
+In short, No.
+
+ES7, or we should really get used to calling ES2016 is already in train.  And so is ES2017.  And ES2018.
+
+What's in?  Don't know yet, but possibles include ...
+
+"Yea, well, I could write a shim/monkeypatch/function that does that ..."  
+And yea you could.  By the nature of things, your JavaScript execution environment is always going to be behind your development environment. (Just like Java! and C#! and C++! and ...)  Tools like Babel and Traceur allow us to work with the latest features, while targetting your existing runtime ecosystem.  And yea, while you could write a shim, I'm happy to let someone else do it for me, because a) I'm lazy and b) they'll probably make a better job of it :)  
+
+So, if you're not already, get using ES6 in your toolchain.  And if you, turn it up to 7.
+
+As a little "oh look at the circularity", one of the proposed new features for ES8 is macros.  Not crappy C style text replacement macros. No. Lisp style meta-programming macros.  So maybe, 20 years after Eich's mad fortnight, we will end up with Scheme in the browser after all ...

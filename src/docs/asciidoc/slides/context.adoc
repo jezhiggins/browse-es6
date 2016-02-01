@@ -1,4 +1,14 @@
 
 == A Bit of History
 
+Don't want to give exhaustive history of JavaScript, but it's useful I think to know a bit of what went on, because it helps explain (or at least we can speculate) as to why JavaScript was as it was.
 
+Scheme in the browser - but no
+
+LiveScript as was launched in Netscape Navigator servers and browsers.  Server-side was very much like PHP or ASP or JSP - you embedded server side script in the page and it did stuff.  Client-side script was, initially, kind of limited and generally its use was limited to things like simple mouseover animations.  Limited context (very limited on client side) meant that many of JavaScript's idiosyncracies (aka shortcomings, depending on your outlook) weren't really a factor.
+
+standardisation process took us through 2 to 3 to 4.  Four was really quite radical, and consequently strangled in its cradle.  Es5 was standardised in 2009 and there we have remained this long years.
+
+Until now!
+
+...

@@ -1,2 +1,25 @@
 
 == Using ES6 Today
+
+Well, we could rely on browser support
+  MS Edge is pretty good
+  Firefox is better
+  Chrome a bit behind
+  Safari, well Safari's the new IE
+  on mobile though - shit!
+
+Of course, in most real-world situations, we don't get to choose the browser.
+
+So, is all this a far off pipedream and have you just wasted the last half an hour or so?
+
+No!
+
+Babel
+  Ember-CLI
+  Angular
+
+Traceur
+
+On the server side, native Node support is coming.  Echo JS is better.  KinomaXS6 looks good.  Let's face it though, if you're running serverside JS, you're probably running Node right?
+
+cross-compilation is, therefore, your friend
