@@ -1,0 +1,5 @@
+= A Browse Through ES6
+Jez Higgins, jez@jezuk.co.uk
+include::slides/hello.adoc[]
+:imagesdir: images
+:sourcedir: snippets
