@@ -1,5 +1,10 @@
 = A Browse Through ES6
 Jez Higgins, jez@jezuk.co.uk
 include::slides/hello.adoc[]
+include::slides/context.adoc[]
+include::slides/shiny.adoc[]
+include::slides/using-now.adoc[]
+include::slides/future.adoc[]
+include::slides/thanks.adoc[]
 :imagesdir: images
 :sourcedir: snippets
