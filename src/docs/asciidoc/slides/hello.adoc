@@ -1,5 +1,28 @@
 
-== Are You All Well?
+== You Should Leave If ...
+
+[%step]
+* JavaScript isn't your thing
+
+* You're already an ES6 expert
+
+
+[NOTE.speaker]
+--
+There are four other sessions running right now and if, having heard my introductory burblings, you think you're going to have a better time elsewhere, please do get up and go.  Tjelvar's sessions sounds really fascinating and Burkhard's machine learning is probably going to be good fun, so if you want to go please do, I don't mind and I'd even prefer it.
+--
+
+== You Should Stay If ...
+
+[%step]
+* JavaScript is your thing
+
+[NOTE.speaker]
+--
+Are at least one of your things.  I've been working with JavaScript for 20 years and it's almost never been the primary focus or the main language we've been using.  Now obviously over the course of the past few years, and particularly with the emergence of tools like Node.js and client-side frameworks like Ember, Angular, and React, there are more and more people who spent their entire programming time working in JavaScript.  However, my impression is that for most people JavaScript is one of their "other skills".  Is that fair?  Can we take the temperature of the room?  Who is a full-time-no-other-language-shall-cross-my-keyboard JavaScript programmer?  And for everyone else, I assume you're in the "other skills' camp?  What's your main language? Java? C-sharp? C++? What?
+
+So, for you "other skills", you'll have been aware that C-sharp, Java, C++, have all undergone some pretty seisimic changes in the past few years. You might have felt though that while there were lots of interesting things going in JavaScript - libraries like jQuery, lodash, tools like Node, grunt, gulp, frameworks like Ember and so on, there wasn't really anything much going on with JavaScript itself.  JavaScript was JavaScript.  If you wanted language innovation you looked elsewhere - CoffeeScript perhaps, or elsewhere in things like Dart.  But JavaScript was JavaScript and had been for ages.
+--
 
 === Going Down?
 

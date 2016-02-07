@@ -63,6 +63,7 @@ asciidoctor {
   sources {
     include 'slides.adoc'
     include 'slides/**'
+    exclude 'slides/.#**'
   }
   resources {
     from(sourceDir) {
