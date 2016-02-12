@@ -4,7 +4,7 @@
 [%step]
 * JavaScript isn't your thing
 
-* You're already an ES6 expert
+* JavaScript is your thing and you're ES6ed up already
 
 
 [NOTE.speaker]
@@ -24,11 +24,4 @@ Are at least one of your things.  I've been working with JavaScript for 20 years
 So, for you "other skills", you'll have been aware that C-sharp, Java, C++, have all undergone some pretty seisimic changes in the past few years. You might have felt though that while there were lots of interesting things going in JavaScript - libraries like jQuery, lodash, tools like Node, grunt, gulp, frameworks like Ember and so on, there wasn't really anything much going on with JavaScript itself.  JavaScript was JavaScript.  If you wanted language innovation you looked elsewhere - CoffeeScript perhaps, or elsewhere in things like Dart.  But JavaScript was JavaScript and had been for ages.
 
 Spoilers! Not any more, but I guess that's why you're here.
---
-
-=== Going Down?
-
-[NOTE.speaker]
---
-Actually, things are ok I think
 --
