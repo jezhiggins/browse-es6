@@ -1,14 +1,58 @@
+== How Did We Get Here?
 
-== A Bit of History
+[NOTE.speaker]
+--
+I don't intend to give an exhaustive history of JavaScript but it's useful, I think, to know a bit of what went on and where ti came from, because it helps explain (or least lets us speculate) as to why JavaScript was as it was.
 
-Don't want to give exhaustive history of JavaScript, but it's useful I think to know a bit of what went on, because it helps explain (or at least we can speculate) as to why JavaScript was as it was.
+In 1995, the web was definitely a thing, but it was a much greyer thing
+--
 
-Scheme in the browser - but no
+== How Did We Get Here?
 
-LiveScript as was launched in Netscape Navigator servers and browsers.  Server-side was very much like PHP or ASP or JSP - you embedded server side script in the page and it did stuff.  Client-side script was, initially, kind of limited and generally its use was limited to things like simple mouseover animations.  Limited context (very limited on client side) meant that many of JavaScript's idiosyncracies (aka shortcomings, depending on your outlook) weren't really a factor.
+image::grey-web.png[The web was a greyer place in 1995]
 
-standardisation process took us through 2 to 3 to 4.  Four was really quite radical, and consequently strangled in its cradle.  Es5 was standardised in 2009 and there we have remained this long years.
+[NOTE.speaker]
+--
+So we have here many of the elements of the web we know now - search engine, news site, eBay! Ecommerce existed - Amazon was around then (and still a book shop), Paul Graham was building Yahoo Shops and already starting to bang about Lisp, Interflora I think had a website.  But any interactivity you had - here's my bid - happened on the server side.  You filled in a form, submitted, server did some stuff, and you got some HTML back.  It might be HTML just for you, but all the action was on the back end.
 
-Until now!
+The limitations of that were already apparent to people and there were already people working on it.  The Viola browser, for instance, had some scripting capabilities.  Internet Explorer didn't appear until August 1995, but you can bet MS had something OLE based in the works.
 
-...
+The big player at the time was obviously Netscape.  Netscape were one of the few web companies you can actually give money to, so their server side kit was pretty popular with people who like to give money to companies.  And, in mid-1995, this man walks in Netscape.
+--
+
+== How Did We Get Here?
+
+image::brendan-eich.jpg[Brendan Eich]
+
+[NOTE.speaker]
+--
+Brendan Eich - for it is he. He arrived at Netscape in April 1995, specifically to put some kind of scripting language into the browser.  And that language he intended to embed was Scheme.  Just pause there for a moment and ponder where the web and indeed the world might be if that had happened.  But someone somewhere at Netscape had a moment of clarity and, instead, Eich famously took 10 days to create a new language, called Mocha.  In short order that became LiveScript and, following more corporate shenanighans, about three weeks after that JavaScript.  Boom!
+--
+
+== How Did We Get Here?
+
+image::pikesley-javascript.png[Sam has a low opinion of JavaScript]
+
+[NOTE.speaker]
+--
+If you look at the development history of pretty much every widely used language we have today, they typically have *years* of development time put into them.  Java, for instance, had a team working for four years before the first release.  Go, to take a modern example, took at least two years and they had Rob Pike and Ken Thompson on the team.  Compared to that 10 days seems a bit compressed.
+
+It was deadlines - they wanted to get the Navigator 2 beta out, they'd already shoehorned in the JVM, this brand new thing from Sun, and they needed the scripting too. And the original context for that scripting language was to tie the webpage and the Java VM and other plugins together. It was just a little bit of glue. The execution context for it was the page.  This was true even when it was added to the Navigator Servers - it still ran in the context of a page. It wasn't resident in memory or anything like that - it was like PHP, or ASP (although, of course, those didn't exist yet :).
+
+To be fair to Eich, he did take another couple of weeks in the autumn of 1996 to rewrite the Netscape JavaScript engine.  So, it's not quite true to say JavaScript was built in 10 days.  It's nearer a month.
+
+That compressed timeframe, coupled with the limited context, perhaps explains some of JavaScripts idiosyncracies (shortcomings). Fortunately/unfortunately, however you look at it, JavaScript took off - by the middle of 1996 it was shipping IE as well - and it was already pretty much established as the de facto language of the browser.  By the end of 1996, it was into a standards process (albeit it an obscure one) with the first version of ECMA-262 published in June 1997.  The second edition (which was really just some editorial changes) came out June 1998, and the third edition (which added regexes, string methods, try/catch, do/while)  in December 1999.  The fourth edition of the standard foundered though - Netscape/Mozilla & Eich pulling one way, Doug Crockford and Yahoo pulling another, Adobe, Microsoft and other all sticking their oars in - and we entered a long JavaScript deadzone, where nothing seemed to happen. Language development halted, server-side sort of died away when Netscape died, and IIS gained .NET, rollovers and snow on your webpage at Christmas time became rather passe.
+
+Things started to change in 2005 ...
+--
+
+== How Did We Get Here?
+
+image::jesse-james-garrett.jpg[Jesse James Garrett of Adaptive Path]
+
+[NOTE.speaker]
+--
+And this is the guy who might well have kicked it all off, Jesse James Garrett of Adaptive Path, who coined the name AJAX - Asynchronous JavaScript and XML.  He didn't  invent it (nor did he claim to), but he gave a name to something that people were doing and, by doing so, made it possible for people to talk about it.  That really, I think, kicked off a new wave of bigger, more interesting JavaScript.  jQuery, which aimed for more concise, more x-platform JS first started in 2006.  The Yahoo UI components also came out in 2006.  Crockford published JavaScript: The Good Parts in 2008.  Chrome browser launched in 2008 and the V8 engine at the same time.  JavaScript speed of execution began to become a thing.  Node and Angular first appeared in 2009, Ember in 2011.  And we build and build and here ...
+
+But, despite all this, the language itself was static.  ECMAScript 4 was finally abandoned in 2008, while ECMAScript 5 published at the end of 2009 added strict mode, the trailing comma, getters and setters, and a few library methods, most notably for handling JSON.  But, so what?  Too late - everyone was using jQuery or some other library for that anyway.  After all that time, and after the huge, huge growth in the use of JavaScript - it's everywhere! - the language itself  was essentially the one that Brendan Eich had splurged out in those few days fourteen/fifteen years earlier.
+--
