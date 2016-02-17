@@ -27,23 +27,24 @@ image::brendan-eich.jpg[Brendan Eich]
 [NOTE.speaker]
 --
 Brendan Eich - for it is he. He arrived at Netscape in April 1995, specifically to put some kind of scripting language into the browser.  And that language he intended to embed was Scheme.  Just pause there for a moment and ponder where the web and indeed the world might be if that had happened.  But someone somewhere at Netscape had a moment of clarity and, instead, Eich famously took 10 days to create a new language, called Mocha.  In short order that became LiveScript and, following more corporate shenanighans, about three weeks after that JavaScript.  Boom!
---
 
-== How Did We Get Here?
-
-image::pikesley-javascript.png[Sam has a low opinion of JavaScript]
-
-[NOTE.speaker]
---
 If you look at the development history of pretty much every widely used language we have today, they typically have *years* of development time put into them.  Java, for instance, had a team working for four years before the first release.  Go, to take a modern example, took at least two years and they had Rob Pike and Ken Thompson on the team.  Compared to that 10 days seems a bit compressed.
 
 It was deadlines - they wanted to get the Navigator 2 beta out, they'd already shoehorned in the JVM, this brand new thing from Sun, and they needed the scripting too. And the original context for that scripting language was to tie the webpage and the Java VM and other plugins together. It was just a little bit of glue. The execution context for it was the page.  This was true even when it was added to the Navigator Servers - it still ran in the context of a page. It wasn't resident in memory or anything like that - it was like PHP, or ASP (although, of course, those didn't exist yet :).
 
 To be fair to Eich, he did take another couple of weeks in the autumn of 1996 to rewrite the Netscape JavaScript engine.  So, it's not quite true to say JavaScript was built in 10 days.  It's nearer a month.
 
-That compressed timeframe, coupled with the limited context, perhaps explains some of JavaScripts idiosyncracies (shortcomings). Fortunately/unfortunately, however you look at it, JavaScript took off - by the middle of 1996 it was shipping IE as well - and it was already pretty much established as the de facto language of the browser.  By the end of 1996, it was into a standards process (albeit it an obscure one) with the first version of ECMA-262 published in June 1997.  The second edition (which was really just some editorial changes) came out June 1998, and the third edition (which added regexes, string methods, try/catch, do/while)  in December 1999.  The fourth edition of the standard foundered though - Netscape/Mozilla & Eich pulling one way, Doug Crockford and Yahoo pulling another, Adobe, Microsoft and other all sticking their oars in - and we entered a long JavaScript deadzone, where nothing seemed to happen. Language development halted, server-side sort of died away when Netscape died, and IIS gained .NET, rollovers and snow on your webpage at Christmas time became rather passe.
+That compressed timeframe, coupled with the limited context, perhaps explains some of JavaScripts idiosyncracies (shortcomings). Fortunately/unfortunately, however you look at it, JavaScript took off - by the middle of 1996 it was shipping IE as well - and it was already pretty much established as the de facto language of the browser.  By the end of 1996, it was into a standards process (albeit it an obscure one) with the first version of ECMA-262 published in June 1997.  The second edition (which was really just some editorial changes) came out June 1998, and the third edition (which added regexes, string methods, try/catch, do/while)  in December 1999.  The fourth edition of the standard foundered though - Netscape & Eich pulling one way, Adobe, Microsoft and other all sticking their oars in.  The browser wars were kicking off.  "Web innovation" happened in other places.
 
-Things started to change in 2005 ...
+1996 - IFrame
+1998 - XMLHTTP wrapper around the MSXML component
+1999 - Outlook Web app
+By 2000, MS had won the browser wars - the First Browser War anyway - IE's share was just huge
+"What did you do in the Browser Wars Daddy?"
+Until 2004 thing started to move
+2004 - GMail
+2005 - Google Maps, Opera 9, Firefox 2.0 and things started to go a bit mental
+2006 - Safari
 --
 
 == How Did We Get Here?
@@ -52,7 +53,88 @@ image::jesse-james-garrett.jpg[Jesse James Garrett of Adaptive Path]
 
 [NOTE.speaker]
 --
-And this is the guy who might well have kicked it all off, Jesse James Garrett of Adaptive Path, who coined the name AJAX - Asynchronous JavaScript and XML.  He didn't  invent it (nor did he claim to), but he gave a name to something that people were doing and, by doing so, made it possible for people to talk about it.  That really, I think, kicked off a new wave of bigger, more interesting JavaScript.  jQuery, which aimed for more concise, more x-platform JS first started in 2006.  The Yahoo UI components also came out in 2006.  Crockford published JavaScript: The Good Parts in 2008.  Chrome browser launched in 2008 and the V8 engine at the same time.  JavaScript speed of execution began to become a thing.  Node and Angular first appeared in 2009, Ember in 2011.  And we build and build and here ...
+And this is the guy who might well have kicked it all off, Jesse James Garrett of Adaptive Path, who coined the name AJAX - Asynchronous JavaScript and XML.  He didn't  invent it (nor did he claim to), but he gave a name to something that people were doing and, by doing so, made it possible for people to talk about it.  That really, I think, kicked off a new wave of bigger, more interesting JavaScript.  jQuery, which aimed for more concise, more x-platform JS first started in 2006, because of those new browsers.  The Yahoo UI components also came out in 2006.  Crockford published JavaScript: The Good Parts in 2008.  Chrome browser launched in 2008 and the V8 engine at the same time.  JavaScript speed of execution began to become a thing.  Node and Angular first appeared in 2009, Ember in 2011.  And we build and build and here ...
 
-But, despite all this, the language itself was static.  ECMAScript 4 was finally abandoned in 2008, while ECMAScript 5 published at the end of 2009 added strict mode, the trailing comma, getters and setters, and a few library methods, most notably for handling JSON.  But, so what?  Too late - everyone was using jQuery or some other library for that anyway.  After all that time, and after the huge, huge growth in the use of JavaScript - it's everywhere! - the language itself  was essentially the one that Brendan Eich had splurged out in those few days fourteen/fifteen years earlier.
+--
+
+== How Did We Get Here? By Accident
+
+image::pikesley-javascript.png[Sam has a low opinion of JavaScript]
+
+[NOTE.speaker]
+--
+But, despite all this, the language itself was static.  ECMAScript 4 was finally abandoned in 2008, while ECMAScript 5 published at the end of 2009 added strict mode, the trailing comma, getters and setters, and a few library methods, most notably for handling JSON.  But, so what?  Too late - everyone was using jQuery or some other library for that anyway.  Despite some fairly hefty efforts, all we got were a few farts-in-the-web-dev-bath.   After all that time, and after the huge, huge growth in the use of JavaScript - it's everywhere! - the language itself  was essentially the one that Brendan Eich had splurged out in those few days fourteen/fifteen years earlier.
+
+This isn't a detailed history, but hope the thrust is clear - we've arrived in this place where we're building big applications on a substrate that was, with the best will in the world, hacked out and which was never intended for the kind of application development we routinely try and do with it now.  But here we are - JavaScript is the language we have and it's never going away.  It is the COBOL of web development.
+
+But now, well now we have ES6!
+--
+
+=== JavaScript Oopsys
+
+Weird scoping - Wacky type conversion - Numbers are IEEE 754 double precision floats, but you can do bitwise operations on them as if they were 32 bit integers - Everything's visible - Functions do triple duty - What is _this_? - Semicolon insertion - Prototype inheritance - Equality - Wait? Did you just go global? ...
+
+[NOTE.speaker]
+--
+Array.sort orders alphabetically by default.  Function arguments not checked.
+--
+
+=== Equals, right
+
+    If Type(x) is the same as Type(y), then
+        If Type(x) is Undefined, return *true*.
+        If Type(x) is Null, return *true*.
+        If Type(x) is Number, then
+            If x is NaN, return false.
+            If y is NaN, return false.
+            If x is the same Number value as y, return *true*.
+            If x is +0 and y is −0, return *true*.
+            If x is −0 and y is +0, return *true*.
+            Return false.
+        If Type(x) is String, then return *true* if x and y are exactly
+	  the same sequence of characters (same length and same characters
+	  in corresponding positions). Otherwise, return false.
+        If Type(x) is Boolean, return *true* if x and y are both true or
+	  both false. Otherwise, return false.
+        Return true if x and y refer to the same object. Otherwise, return false.
+    If x is null and y is undefined, return true.
+    If x is undefined and y is null, return true.
+    If Type(x) is Number and Type(y) is String,
+      return the result of the comparison x == ToNumber(y).
+    If Type(x) is String and Type(y) is Number,
+      return the result of the comparison ToNumber(x) == y.
+    If Type(x) is Boolean, return the result of the comparison ToNumber(x) == y.
+    If Type(y) is Boolean, return the result of the comparison x == ToNumber(y).
+    If Type(x) is either String or Number and Type(y) is Object,
+      return the result of the comparison x == ToPrimitive(y).
+    If Type(x) is Object and Type(y) is either String or Number,
+      return the result of the comparison ToPrimitive(x) == y.
+    Return false.
+
+[NOTE.speaker]
+--
+
+The comparison x == y, where x and y are values, produces true or false. Such a comparison is performed as follows:
+
+
+And there are notes!
+
+NOTE 1 Given the above definition of equality:
+
+    String comparison can be forced by: "" + a == "" + b.
+    Numeric comparison can be forced by: +a == +b.
+    Boolean comparison can be forced by: !a == !b.
+
+NOTE 2 The equality operators maintain the following invariants:
+
+    A != B is equivalent to !(A == B).
+    A == B is equivalent to B == A, except in the order of evaluation of A and B.
+
+NOTE 3 The equality operator is not always transitive. For example, there might be two distinct String objects, each representing the same String value; each String object would be considered equal to the String value by the == operator, but the two String objects would not be equal to each other. For Example:
+
+    new String("a") == "a" and "a" == new String("a")are both true.
+    new String("a") == new String("a") is false.
+
+NOTE 4 Comparison of Strings uses a simple equality test on sequences of code unit values. There is no attempt to use the more complex, semantically oriented definitions of character or string equality and collating order defined in the Unicode specification. Therefore Strings values that are canonically equal according to the Unicode standard could test as unequal. In effect this algorithm assumes that both Strings are already in normalised form.
+
 --
