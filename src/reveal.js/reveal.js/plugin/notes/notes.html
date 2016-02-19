@@ -39,7 +39,7 @@
 			#current-slide {
 				position: absolute;
 				width: 55%;
-				height: 100%;
+				height: 30%;
 				top: 0;
 				left: 0;
 				padding-right: 0;
@@ -56,8 +56,8 @@
 			#speaker-controls {
 				position: absolute;
 				top: 30%;
-				right: 0;
-				width: 45%;
+				left: 0;
+				width: 100%;
 				height: 70%;
 				overflow: auto;
 				font-size: 16px;
@@ -150,9 +150,10 @@
 	</head>
 
 	<body>
-
+	        <div>
 		<div id="current-slide"></div>
 		<div id="upcoming-slide"><span class="label">UPCOMING:</span></div>
+		</div>
 		<div id="speaker-controls">
 			<div class="speaker-controls-time">
 				<h4 class="label">Time <span class="reset-button">Click to Reset</span></h4>
@@ -290,8 +291,8 @@
 					var upcomingURL = data.url + '?' + params + '&controls=false' + hash;
 
 					currentSlide = document.createElement( 'iframe' );
-					currentSlide.setAttribute( 'width', 1280 );
-					currentSlide.setAttribute( 'height', 1024 );
+					currentSlide.setAttribute( 'width', 640 );
+					currentSlide.setAttribute( 'height', 512 );
 					currentSlide.setAttribute( 'src', currentURL );
 					document.querySelector( '#current-slide' ).appendChild( currentSlide );
 
