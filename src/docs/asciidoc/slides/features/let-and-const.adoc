@@ -1,4 +1,3 @@
-
 == Sane Scoping
 
 ----
@@ -16,6 +15,7 @@ ES6 introduces sane scoping, that actual living humans can understand.
 Declaring a variable with `let` rather than `var` introduces with block scope, and it is created and initialised at the point of declaration.  Compare this to the insane scoping of `var` which has function scope, is visible throughout the function regardless of where it is declared, and is only initialised once you get to the declaration.
 --
 
+[data-transition="none"]
 === Sane Scoping
 
 ----
@@ -27,6 +27,7 @@ Declaring a variable with `let` rather than `var` introduces with block scope, a
 console.log(x); // ERROR!
 ----
 
+[data-transition="none"]
 === Sane Scoping
 
 ----
@@ -38,6 +39,7 @@ console.log(x); // ERROR!
 console.log(x);
 ----
 
+[data-transition="none"]
 === Sane Scoping
 
 ----
@@ -49,6 +51,7 @@ console.log(x);
 }
 ----
 
+[data-transition="none"]
 === Sane Scoping
 
 ----
@@ -60,6 +63,7 @@ console.log(x);
 }
 ----
 
+[data-transition="none"]
 === Sane Scoping
 
 ----
@@ -71,6 +75,7 @@ console.log(x);
 }
 ----
 
+[data-transition="none"]
 === Sane Scoping
 
 ----
@@ -81,3 +86,81 @@ console.log(x);
   ...
 }
 ----
+
+[NOTE.speaker]
+--
+In all these little fragments, I've declared and initialised x in one.  You can also declare and then initialise them separately, but why would you want to.
+
+Block scoping also allows for shadowing, as you can in other languages, but again this is sane (or at least relatively so) and behaves in ways you probably already expect.
+--
+
+[data-transition="none"]
+=== Sane Scoping
+
+----
+let x = 0;
+...
+{
+  let x = "something else";
+  ...
+}
+...
+----
+
+[NOTE.speaker]
+--
+Shadowing in action.  You can also use let in loops
+--
+
+[data-transition="none"]
+=== Sane Scoping
+
+----
+for(let i = 0; i != 10; ++i) {
+  ...
+}
+...
+----
+
+[NOTE.speaker]
+--
+Here, at the end of the loop, i is out of scope, so you haven't polluted the scope at all.
+--
+
+[data-transition="none"]
+=== Sane Scoping
+
+----
+let x = "Hello";
+
+const y = "World";
+
+x = "Goodbye";
+----
+
+[NOTE.speaker]
+--
+Not only do we have this sensible block scoping via `let`, we now also have `const`.
+
+Constants, created with `const`, are immutable, so we can't change its value.
+--
+
+[data-transition="none"]
+=== Sane Scoping
+
+----
+let x = "Hello";
+
+const y = "World";
+
+x = "Goodbye";
+
+y = "Cruel World";  // ERROR
+----
+
+[NOTE.speaker]
+--
+Sorry, you're not going to get away that easily.
+
+Just by themselves, `let` and `const`, can make a really disproportionate difference.  Use them.  Purge `var` from your mind. Use `const` as much as you can, and use `let` when you really do need a variable.  It's probably less you think.  John McCarthy probably did have this programming thing figured out in the 60s.
+--

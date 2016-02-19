@@ -16,8 +16,6 @@ ES6, officially ECMAScript 6, as ratified as a standard by the good people of th
 The new JavaScript we're writing though.  That can be less crappy.  Quite a lot less.
 --
 
-include::features/let-and-const.adoc[]
-
 === Shiny New Stuff!
 
 Arrow functions
@@ -52,3 +50,5 @@ Number, maths
 RegExps
 
 Loads!
+
+include::features/let-and-const.adoc[]
