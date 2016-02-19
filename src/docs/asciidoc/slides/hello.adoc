@@ -11,7 +11,7 @@ Hello everyone. I'm Jez and I'm Chair of the Junior Section of Kings Heath Pickw
 
 KHP can trace its history back to mid-1800. The Junior section provides training and competition for kids from ages 4 or 5 upto 16, many of whom go on to play in the senior squads. Over the years our club's produced a number of national league and national squad players. We train on a Sunday morning, and if you're in the South Birmingham area do bring your kids along to have a go. We'd love to see you.
 
-I'm making this rather oblique introduction because I don't want to tout my "experience" as any kind of credential. Over the course of what I laughingly call my career I've had the opportunity to work on a number of interesting things, and with a number (a smaller number) of very good and interesting people. I don't want to claim that what I've done makes me especially, or even particularly, qualified. In the grand scheme of things, I've had a pretty mundane career. Over the past 25 years or so I have, like I guess most of you, written a lot of software that nobody here will have heard of.  Any lawyers, solicitors in the room? Planetary scientists? Midwives? You see?  I'm going to talk today about some things I've learned over the last year or two, and hoepfully they'll be of interest to you and helpful in your mundane careers.
+I'm making this rather oblique introduction because I don't want to tout my "experience" as any kind of credential. Over the course of what I laughingly call my career I've had the opportunity to work on a number of interesting things, and with a number (a smaller number) of very good and interesting people. I don't want to claim that what I've done makes me especially, or even particularly, qualified. In the grand scheme of things, I've had a pretty mundane career. Over the past 25 years or so I have, like I guess most of you, written a lot of software that nobody here will have heard of. Any lawyers, solicitors in the room? Planetary scientists? Midwives? Golf course head greenskeepers? You see?  I'm going to talk today about some things I've learned over the last year or two, and hoepfully they'll be of interest to you and helpful in your mundane careers.
 
 When I first thought about this talk I thought 'A Browse Through ES6' was a nice, gently punning title, but having seen some of the other talks here, I probably should have gone for something more agressive and 'agiley'.  I thought about a sprint, but there's a lot of new stuff in ES6 so I'd end up just firing out words and all end up exhausted and shellshocked.  May a spike would be better - I want to focus on the parts of ES6 that I think are the most useful and significant, and maybe just give some pointers to some of the other bits.  I'm also going to have a look at how you can use ES6 now, today, and into the future.
 --
@@ -29,7 +29,7 @@ When I first thought about this talk I thought 'A Browse Through ES6' was a nice
 There are four other sessions running right now and if, having heard my introductory burblings, you think you're going to have a better time elsewhere, please do get up and go.  Tjelvar's sessions sounds really fascinating and Burkhard's machine learning is probably going to be good fun, so if you want to go please do, I don't mind and I'd even prefer it.
 --
 
-== You Should Stay If ...
+== Perhaps Stay If ...
 
 [%step]
 * JavaScript is your thing
