@@ -1,0 +1,83 @@
+
+== Sane Scoping
+
+----
+{
+  let x = 0;
+  ...
+  ...
+}
+----
+
+[NOTE.speaker]
+--
+ES6 introduces sane scoping, that actual living humans can understand.
+
+Declaring a variable with `let` rather than `var` introduces with block scope, and it is created and initialised at the point of declaration.  Compare this to the insane scoping of `var` which has function scope, is visible throughout the function regardless of where it is declared, and is only initialised once you get to the declaration.
+--
+
+=== Sane Scoping
+
+----
+{
+  let x = 0;
+  ...
+  ...
+}
+console.log(x); // ERROR!
+----
+
+=== Sane Scoping
+
+----
+{
+  var x = 0;
+  ...
+  ...
+}
+console.log(x);
+----
+
+=== Sane Scoping
+
+----
+{
+  console.log(x);
+  ...
+  var x = 0;
+  ...
+}
+----
+
+=== Sane Scoping
+
+----
+{
+  console.log(x); // ERROR
+  ...
+  let x = 0;
+  ...
+}
+----
+
+=== Sane Scoping
+
+----
+console.log(x);
+...
+{
+  var x = 0;
+  ...
+}
+----
+
+=== Sane Scoping
+
+----
+console.log(x);
+...
+{
+  let x = 0;
+  ...
+}
+----

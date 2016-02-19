@@ -4,14 +4,21 @@
 [%step]
 * ES6 fixes none of this
 
-* All your crappy JavaScript will continue to run
+* All our crappy JavaScript will continue to run
+
+* Our new JavaScript can be less crappy
 
 
 [NOTE.speaker]
 --
 ES6, officially ECMAScript 6, as ratified as a standard by the good people of the European Computer Manufacturing Association on the 17 June 2015, fixes none of JavaScript's many shortcomings.  ES6 is a superset of ES5, nothing is removed.  Everything that currently runs as JavaScript will continue to run as JavaScript, even if we magically upgraded everybody's browser this evening.
 
-== Shiny New Stuff!
+The new JavaScript we're writing though.  That can be less crappy.  Quite a lot less.
+--
+
+include::features/let-and-const.adoc[]
+
+=== Shiny New Stuff!
 
 Arrow functions
 
