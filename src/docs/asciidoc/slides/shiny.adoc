@@ -52,3 +52,6 @@ RegExps
 Loads!
 
 include::features/let-and-const.adoc[]
+include::features/loops.adoc[]
+include::features/destructure.adoc[]
+include::features/parameters.adoc[]
