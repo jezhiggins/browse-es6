@@ -1,10 +1,9 @@
-== Sane Scoping
+== Block Scope
 
 ----
 {
   let x = 0;
-  ...
-  ...
+  // ---
 }
 ----
 
@@ -16,74 +15,72 @@ Declaring a variable with `let` rather than `var` introduces with block scope, a
 --
 
 [data-transition="none"]
-=== Sane Scoping
+=== Block Scope
 
 ----
 {
   let x = 0;
-  ...
-  ...
+  // ---
 }
 console.log(x); // ERROR!
 ----
 
 [data-transition="none"]
-=== Sane Scoping
+=== Block Scope
 
 ----
 {
   var x = 0;
-  ...
-  ...
+  // ---
 }
 console.log(x);
 ----
 
 [data-transition="none"]
-=== Sane Scoping
+=== Block Scope
 
 ----
 {
   console.log(x);
-  ...
+  // ---
   var x = 0;
-  ...
+  // ---
 }
 ----
 
 [data-transition="none"]
-=== Sane Scoping
+=== Block Scope
 
 ----
 {
   console.log(x); // ERROR
-  ...
+  // ---
   let x = 0;
-  ...
+  // ---
 }
 ----
 
 [data-transition="none"]
-=== Sane Scoping
+=== Block Scope
 
 ----
 console.log(x);
-...
+// ---
 {
   var x = 0;
-  ...
+  // ---
 }
 ----
 
 [data-transition="none"]
-=== Sane Scoping
+=== Block Scope
 
 ----
 console.log(x);
-...
+// ---
 {
   let x = 0;
-  ...
+  // ---
 }
 ----
 
@@ -95,40 +92,24 @@ Block scoping also allows for shadowing, as you can in other languages, but agai
 --
 
 [data-transition="none"]
-=== Sane Scoping
+=== Block Scope
 
 ----
 let x = 0;
-...
+// ---
 {
   let x = "something else";
-  ...
+  // ---
 }
-...
+// ---
 ----
 
 [NOTE.speaker]
 --
-Shadowing in action.  You can also use let in loops
+Shadowing in action.  As we come out of the block, the value we see for x is 0.  Try that with var and you'll see "something else", and it would almost certainly be wrong.
 --
 
-[data-transition="none"]
-=== Sane Scoping
-
-----
-for(let i = 0; i != 10; ++i) {
-  ...
-}
-...
-----
-
-[NOTE.speaker]
---
-Here, at the end of the loop, i is out of scope, so you haven't polluted the scope at all.
---
-
-[data-transition="none"]
-=== Sane Scoping
+=== Block Scope
 
 ----
 let x = "Hello";
@@ -142,11 +123,11 @@ x = "Goodbye";
 --
 Not only do we have this sensible block scoping via `let`, we now also have `const`.
 
-Constants, created with `const`, are immutable, so we can't change its value.
+Constants, created with `const`, are immutable, so we can't change the binding.  (In this sense it's more like a Java final or C# readonly than a C++ const.)
 --
 
 [data-transition="none"]
-=== Sane Scoping
+=== Block Scope
 
 ----
 let x = "Hello";
@@ -162,5 +143,5 @@ y = "Cruel World";  // ERROR
 --
 Sorry, you're not going to get away that easily.
 
-Just by themselves, `let` and `const`, can make a really disproportionate difference.  Use them.  Purge `var` from your mind. Use `const` as much as you can, and use `let` when you really do need a variable.  It's probably less you think.  John McCarthy probably did have this programming thing figured out in the 60s.
+Just by themselves, `let` and `const`, can make a really disproportionate difference.  Use them.  Purge `var` from your mind. Use `const` as often as you can  (John McCarthy probably did have this programming thing figured out in the 60s) and use `let` when you really do need a variable.  That's probably less you often that you think.  Using them will make your programs better, especially as they get larger, and help you avoid subtle scoping bugs.
 --

@@ -1,1 +1,145 @@
 == Parameters
+
+----
+
+function engageWarpSpeed(factor = max()) {
+  // ---
+}
+
+----
+
+[NOTE.speaker]
+--
+Before we move on, let's just have a quick look at parameters.
+
+Function parameters can now take a default value.  As in the destructure, this can be a literal or a calculated value, and the calculation is only resolved if it's needed.  There's no overhead otherwise.
+--
+
+[data-transition='None']
+=== Parameters
+
+----
+
+function engageWarpSpeed(factor = max()) {
+  // ---
+}
+
+engageWarpSpeed(3);
+
+----
+
+[NOTE.speaker]
+--
+So if we do this, max() isn't called.
+--
+
+[data-transition='None']
+=== Parameters
+
+----
+
+function engageWarpSpeed(factor = max()) {
+  // ---
+}
+
+engageWarpSpeed(3);
+
+engageWarpSpeed();
+
+----
+
+[NOTE.speaker]
+--
+It's only called if we do this.
+
+The default is pretty nice - no more checking for undefined, it's right there in the function declaration rather than hidden.  If we use a variable in here, it's actually parameterisable in a way that internally defined defaults aren't
+--
+
+=== Parameters
+
+----
+
+function format(pattern, ...params) {
+  // ---
+}
+
+----
+
+[NOTE.speaker]
+--
+Here's our rest operator again.  This is just like the destructuring we just saw - the first parameter we pass will be bound to pattern, everything else gets gathered up into params.
+
+You can use this to completely replace the use of magical _arguments_ variable, and I would recommend you do.
+--
+
+=== Parameters
+
+----
+
+function rotateCrank({ start: 0, end: 0, speed: 0 } = {}) {
+  // ---
+}
+
+----
+
+[NOTE.speaker]
+--
+We can actually use destructuring to simulate named parameters.  Here it's combined with default values too. You can put all these different things together.
+--
+
+[data-transition='None']
+=== Parameters
+
+----
+
+function rotateCrank({ start: 0, end: 360, speed: 1 } = {}) {
+  // ---
+}
+
+rotateCrank({ end: 90 });
+
+rotateCrank({});
+
+rotateCrank();
+----
+
+[NOTE.speaker]
+--
+By doing so, we can pass as many or as few parameters as we want.  This is super-cool, if you need it.
+--
+
+=== Parameters
+
+----
+
+let numbers = [35, 39, 11, 9];
+
+const smallest = Math.min(...numbers);
+
+----
+
+[NOTE.speaker]
+--
+One final thing on parameters.  While the destructuring lets us manipulate how we receive parameters, the spread operator lets us massage them at the call site.
+
+There's our three dots again, but now they have a different name - this is the spread operator.  Spread opens out the array, in fact the iterable, into individual parameters.
+--
+
+=== Parameters
+
+----
+
+let numbers = [35, 39, 11, 9];
+
+const smallest = Math.min(...numbers);
+
+const alsoSmallest = Math.min(35, 39, 11, 9);
+
+----
+
+[NOTE.speaker]
+--
+
+These two lines are exactly equivalent.
+
+--

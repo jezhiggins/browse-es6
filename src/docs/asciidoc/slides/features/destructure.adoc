@@ -1,1 +1,214 @@
 == Destructuring
+
+----
+const arr = [1, 2, 3, 4, 5];
+
+for (const [i, v] of arr.entries()) {
+  //---
+}
+----
+
+[NOTE.speaker]
+--
+I showed a little example of destructuring a little earlier, where we were looping on array entries.  The entries are key-value pairs, and we're picking the pairs apart into two variables at the same time.
+
+--
+
+=== Destructuring
+
+----
+
+const hand = [ { suit: 'Spades', card: 'Ace' },
+               { suit: 'Hearts', card: 'Jack' },
+	       { suit: 'Clubs',  card: 'Ten' } ];
+
+----
+
+[NOTE.speaker]
+--
+More generally, destructuring allows us to pick apart objects and assign multiple variables all at once.
+
+Here, for instance, I have a little array of objects.
+--
+
+[data-transition="None"]
+=== Destructuring
+
+----
+
+const hand = [ { suit: 'Spades', card: 'Ace' },
+               { suit: 'Hearts', card: 'Jack' },
+	       { suit: 'Clubs',  card: 'Ten' } ];
+
+const [ first, second, third ] = hand;
+
+----
+
+[NOTE.speaker]
+--
+And we can pick the cards out of this hand, all in one movement.
+
+This is an array destructure, where the elements of the array are mapped onto the variables in order.
+--
+
+[data-transition="None"]
+=== Destructuring
+
+----
+const hand = [ { suit: 'Spades', card: 'Ace' },
+               { suit: 'Hearts', card: 'Jack' },
+	       { suit: 'Clubs',  card: 'Ten' } ];
+
+const [ first ] = hand;
+
+----
+
+[NOTE.speaker]
+--
+If was only interested in the first card, I could do this.
+--
+
+[data-transition="None"]
+=== Destructuring
+
+----
+const hand = [ { suit: 'Spades', card: 'Ace' },
+               { suit: 'Hearts', card: 'Jack' },
+	       { suit: 'Clubs',  card: 'Ten' } ];
+
+const [ first ] = hand;
+
+const [, , third ] = hand;
+----
+
+[NOTE.speaker]
+--
+Or if I was interested in the last card, then this
+--
+
+[data-transition="None"]
+=== Destructuring
+
+----
+const hand = [ { suit: 'Spades', card: 'Ace' },
+               { suit: 'Hearts', card: 'Jack' },
+	       { suit: 'Clubs',  card: 'Ten' } ];
+
+const [ first ] = hand;
+
+const { suit: s, card: c } = first;
+----
+
+[NOTE.speaker]
+--
+As well as arrays, we can pick apart objects too.
+
+This last one here, there's a shorthand notation for it
+--
+
+[data-transition="None"]
+=== Destructuring
+
+----
+const hand = [ { suit: 'Spades', card: 'Ace' },
+               { suit: 'Hearts', card: 'Jack' },
+	       { suit: 'Clubs',  card: 'Ten' } ];
+
+const [first] = hand;
+
+const { suit, card } = first;
+----
+
+[NOTE.speaker]
+--
+Notice how the notation for destructuring mirrors the notation for object initialisation - square brackets from arrays, curly brackets for objects.
+
+And, in the same way you can arbitrarily nest object initialisation, you can arbitrarily nest destructuring too.
+--
+
+[data-transition="None"]
+=== Destructuring
+
+----
+const hand = [ { suit: 'Spades', card: 'Ace' },
+               { suit: 'Hearts', card: 'Jack' },
+	       { suit: 'Clubs',  card: 'Ten' } ];
+
+const [ { suit, card } ] = hand;
+----
+
+[NOTE.speaker]
+--
+Here, we're taking the first item in the array, then cracking it open to give us suit and card.  You can imagine this could get unweildy pretty quickly, but I'm sure you also think of places where being able to hook something out of, say, a JSON object in one go without any intervening objects is going to be pretty handy.  Also, of course, it limits scope again - you get what you need, and that's all.
+--
+
+[data-transition="None"]
+=== Destructuring
+
+----
+const hand = [ { suit: 'Spades', card: 'Ace' },
+               { suit: 'Hearts', card: 'Jack' },
+	       { suit: 'Clubs',  card: 'Ten' } ];
+
+const { length: len } = hand;
+----
+
+[NOTE.speaker]
+--
+Anyone fancy a crack at what this might do?
+
+Object destructuring can fetch any propery, including built-in ones.
+
+Array destructuring, well, it's not just for arrays.
+--
+=== Destructuring
+
+----
+
+const [head, ...tail] = "abcdef";
+
+----
+
+[NOTE.speaker]
+--
+Array destructuring, with the square brackets, uses an iterator to get the elements.  Consequently, you can use any iterable value with the destructuring assignment.  In this case, I'm using a string, but it could also be an iterable object, an iterator, or a generator of your own devising.
+
+This notation here, with the three dots, is called the rest operator.  It gathers up all the remaining elements of the array, the iterable, into an array.
+--
+
+[data-transition='None']
+=== Destructuring
+
+----
+
+const [head, ...tail] = "abcdef";
+
+// head = 'a'
+// tail = ['b','c','d','e','f'];
+
+----
+
+[NOTE.speaker]
+--
+Array destructuring, with the square brackets, uses an iterator to get the elements.  Consequently, you can use any iterable value with the destructuring assignment.  In this case, I'm using a string, but it could also be an iterable object, an iterator, or a generator of your own devising.
+
+This notation here, with the three dots, is called the rest operator.  It gathers up all the remaining elements of the array, the iterable, into an array.
+--
+
+=== Destructuring
+
+----
+
+const { code, msg = 'No error message available' } = response
+
+----
+
+[NOTE.speaker]
+--
+
+One final note on destructuring, we can provide default values.
+
+Here, if there's no msg property in the response, we get this default string.  The default value needn't be a static value - it could be calculated from an expression, or from a function call.  One of the cool things about destructuring is that the default value is only resolved if it's needed.
+
+So, with destructuring we've got all kinds of new ways to handle data and pull it about.
+--

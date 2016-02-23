@@ -1,0 +1,88 @@
+== Iterators
+
+----
+let m = new Map();
+m.set("hat", "Red");
+m.set("flavour", "Mint");
+
+for (let [k, v] of m) {
+  ...
+}
+----
+
+[NOTE.speaker]
+--
+The map iterator, as you might expect, returns a series of key-value pairs.
+
+(I'm not going to say anything more about Map, other than to note it exists.  There's also a new Set class, along with WeakMap and WeakSet.)
+
+Has anyone here implemented your iterator or enumerator in C# or in Java, or anything like that?  Maybe a LINQ method, something of that sort?  You should! I used to give a talk where I banged about how you should, or at least you should have it as an option.  JavaScript hasn't given you the option until now, but here it is.  Implementing iterable and iterator in JavaScript is dead easy.  JavaScript doesn't have interfaces, in the same way that Java or C# have, so you can think of it as convention or a protocol or something like that.
+--
+
+=== Iterators
+
+----
+let powersOfTwo = {
+  [Symbol.iterator]() {
+    let n = 0;
+    return {
+      next() {
+        if (n == 9)
+          return { done: true };
+        let p = 2**n;
+        ++n;
+        return { done: false, value: p };
+      }
+    }
+  }
+}
+
+for (const p of powersOfTwo) {
+  console.log(p);
+}
+----
+
+[NOTE.speaker]
+--
+Here's a silly example that returns powers of two.
+
+The method for/of looks for is called Symbol.iterator - this is like a magic unpronounable name (a bit like Python's __iter__).  Symbol.iterator returns an object, of any kind you like, that has a method called next().  next() also a returns an object, that has properties done and value.  So long as done is false, or  at least falsey, it pulls out value, and executes the body of the loop.
+
+What you do in next() is entirely up to you.  On the server side, for instance, you might be reading lines from a file, pulling values from a database cursor, something like that.  On the client side, it could be paging though a JSON api, walking the DOM, go crazy.
+
+One of the particularly cool things about this iterable/iterator protocol is that it lets other, custom, data structures - trees, queues, whatever - or data sources that work in the same way as built ins.  It also opens the door to libraries along the lines of LINQ or Java streams that can operate over arbitrary structures.  If you think a library like lodash, for instance, it has a whole load of really useful functions - find and drop and take and so - but they operate on arrays and return arrays. So have to realise that array - load all your stuff from the database or from your JSON call, or whatever it is, and have it all there.
+
+So this is cool stuff right here.
+
+Writing an iterator isn't, I don't think, particularly tricky but there's a often a bit of housekeeping involved, and in the JavaScript case here, it all gets a bit curly bracket-tastic.  Happily, there's additional language support to help
+--
+
+[data-transition='None']
+=== Generators
+
+----
+let powersOfTwo = {
+  [Symbol.iterator]: function*() {
+    for (let n = 0; n != 10; ++n) {
+      yield 2**n;
+    }
+  }
+}
+
+for (const p of powersOfTwo) {
+  console.log(p);
+}
+----
+
+[NOTE.speaker]
+--
+This is identical in operation to the previous example, but for less typing and, more importantly, lower comprehension overhead. Less brainpower.
+
+function* returns a generator instance, with yield returning successive values.  Again, the body of this can be whatever you like.
+
+Here I'm using a generator to implement an iterator, but you could also use them for observers, or for cooperative multi-tasking via coroutines (producer/consumer pairs).  That's beyond what we've got time for here, but just lodge that the possibilities are there.
+
+So for/of loops over anything iterable - built-in things like Arrays, Strings, Maps, Sets - but also anything else that we care to write - trees, queues, data sources.
+
+Different libraries that we use often have a kind of impedance mismatch - as we go forward iterable/iterator will start to break those down, to ease that friction.
+--

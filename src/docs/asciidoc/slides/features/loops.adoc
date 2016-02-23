@@ -1,1 +1,88 @@
 == For loops
+
+----
+for(let i = 0; i != 10; ++i) {
+  // ---
+}
+// ---
+----
+
+[NOTE.speaker]
+--
+You can use let anywhere you might have used var - here in this for loop, for instance.
+
+As we leave this loop here, i is out of scope and so there's no pollution of the surrounding scope.
+--
+
+=== For loops
+
+----
+const arr = [1, 2, 3, 4, 5];
+
+for(let i in arr) {
+  let v = arr[i];
+  // ---
+}
+----
+
+[NOTE.speaker]
+--
+Or in this for/in loop.
+--
+
+[data-transition="none"]
+=== For loops
+
+----
+const arr = [1, 2, 3, 4, 5];
+
+for(const i in arr) {
+  let v = arr[i];
+  // ---
+}
+----
+
+[NOTE.speaker]
+--
+More interestingly, we can use const here too.  Each time we go round the loop, we create a new scope.  We don't generally want mess around with a loop variable, so why not make it const.
+--
+
+[data-transition="none"]
+=== For loops
+
+----
+const arr = [1, 2, 3, 4, 5];
+
+for (const v of arr) {
+  // ---
+}
+----
+
+[NOTE.speaker]
+--
+If looping over arrays is a thing you do, you might be interested in for/of.  Here, rather than giving you the index, so you need to look things up for/of over an array hands you back the values.
+--
+
+[data-transition="none"]
+=== For loops
+
+----
+const arr = [1, 2, 3, 4, 5];
+
+for (const [i, v] of arr.entries()) {
+  // ---
+}
+----
+
+[NOTE.speaker]
+--
+If you want index and value, you can have that to.  There's actually quite a lot going here, so let's break it down a bit.
+
+arr.entries() returns a series of index/values pairs.
+
+const [i, v] = splits those pairs apart, assigning the first bit (which happens to be the index) to i, and the second bit (the value) to v.  This is new in ES6, and is called destructuring.  I'll come back this in a moment, but in essence it allows you pick apart an object and assign bits of it to multiple variables all in one go.
+
+I said, arr.entries() returns a series of index/value pairs. It's not returning all in one lump, in one array, in one go.  What arr.entries() actually returns is an iterator.  for/of, surprisingly enough, iterates over it, executing the body of the loop until the iterator is exhausted (or we've broken out of the loop).
+
+You'll probably be familiar with iterators from Java, or C# or Ruby where they're called enumerators. The for/of works with any iterable type. An iterable type is one that implements a special method, and that method returns an iterator.   One example is the new Map type
+--
