@@ -114,7 +114,7 @@ const hand = [ { suit: 'Spades', card: 'Ace' },
                { suit: 'Hearts', card: 'Jack' },
 	       { suit: 'Clubs',  card: 'Ten' } ];
 
-const [first] = hand;
+const [ first ] = hand;
 
 const { suit, card } = first;
 ----

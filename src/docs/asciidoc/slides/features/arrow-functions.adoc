@@ -1,1 +1,137 @@
 == Arrow Functions
+
+----
+
+const arr = [1, 2, 3];
+
+const squares = arr.map(x => x*x*x);
+
+----
+
+[NOTE.speaker]
+--
+As we head to the end here, I thought I should probably have a look at arrow functions.  If you've any experience with ES6, then you've seen arrow functions. Yes?
+
+They are syntactically similar to related features in C#, Java 8, and CoffeeScript.
+
+They support both expression bodies or statement bodies.
+--
+
+[data-transition='None']
+=== Arrow Functions
+
+----
+
+const arr = [1, 2, 3];
+
+const squares = arr.map(x => x*x*x);
+
+squares.forEach(x => { console.log(x); });
+
+----
+
+[NOTE.speaker]
+--
+Functions in JavaScript are kind of bad non-method functions, because of _this_, the magical _this_ parameter.  The _this_ parameter is always present, but you can't trust it.  _this_ comes from the calling context, which was fine when just had a few little objects with a couple of methods on them, but as we all know from _what the hell is happening experience_ can break down, for instance, with callbacks.
+
+So we have, as JavaScript practioners, if that doesn't sound too high-faluting, have come up with various ways around that
+--
+
+=== Arrow Functions
+
+----
+
+function Multiplier(factor) { this.factor = factor; }
+
+Multiplier.prototype.multiplyArray = function(arr) {
+  var that = this;
+  return arr.map(function (x) {
+    return that.factor * x;
+  });
+};
+
+
+----
+
+[NOTE.speaker]
+--
+We assign _this_ to another variable say, often called _that_, because that's isn't at all confusing.
+
+--
+
+=== Arrow Functions
+
+----
+
+function Multiplier(factor) { this.factor = factor; }
+
+Multiplier.prototype.multiplyArray = function(arr) {
+  return arr.map(function (x) {
+    return this.factor * x;
+  }, this);
+};
+
+----
+
+[NOTE.speaker]
+--
+Maybe our api let's us pass in the _this_ we want to be applied - how weird is that?
+--
+
+=== Arrow Functions
+
+----
+
+function Multiplier(factor) { this.factor = factor; }
+
+Multiplier.prototype.multiplyArray = function(arr) {
+  return arr.map(function (x) {
+    return this.factor * x;
+  }.bind(this));
+};
+
+----
+
+[NOTE.speaker]
+--
+We can bind _this_ into the function.
+--
+
+=== Arrow Functions
+
+----
+
+function Multiplier(factor) { this.factor = factor; }
+
+Multiplier.prototype.multiplyArray = function(arr) {
+  return arr.map(
+    function(that) {
+      return function (x) {
+        return that.factor * x;
+      }
+    }(this));
+};
+
+----
+
+[NOTE.speaker]
+--
+Or, and I accept this probably isn't the place you'd use something like this, we use an immediately invoked function expression - we write a function that returns a function that captures the values we want.  And we do this a lot - we're constantly sitting on callback and promises and futures and all the rest of it.  It doesn't matter how many times you see something like the code here, you still have to stop and have a look and it take you a moment to think about.  And if you've another callback inside this callback, it can all start getting very confused.
+--
+
+=== Arrow Functions
+
+----
+
+function Multiplier(factor) { this.factor = factor; }
+
+Multiplier.prototype.multiplyArray = function(arr) {
+  return arr.map(x => this.factor.x);
+};
+
+----
+
+[NOTE.speaker]
+--
+And now you can write this code instead.  In the previous examples, this is dynamic which totally weird.  In Arrow functions this (and super, new.target, and arguments [but arguments you should expunge]) are bound lexically.  The value is determined by the surrounding scope, and it is fixed. It can not be changed by accident or on purpose.  Even if you call bind on an arrow function, you can't change the this.
+--

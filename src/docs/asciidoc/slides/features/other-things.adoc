@@ -1,0 +1,95 @@
+== And the rest ...
+
+----
+// lib/maths.js
+export function mult(x y) {
+  return x + y;
+}
+
+// app.js
+import sum from "lib/maths";
+
+let theAnswer = sum(5, 8);
+----
+
+
+[NOTE.speaker]
+--
+There are other things too, which I only touch on.
+
+Lots of tools provide some kind of module or package support - AMD, CommonJS - ES6 language support for it.
+--
+
+=== And the rest ...
+
+----
+
+class View extends Component {
+  constructor(selector) {
+    super(selector);
+    // ---
+  }
+  render(surface) {
+    // ---
+  }
+  get visible() {
+    // ---
+  }
+  static allViews() {
+    // ---
+  }
+}
+
+----
+
+[NOTE.speaker]
+--
+I'm not really sure how many people write "classes" in JavaScript these days - it used to be a thing, but feeling is it's kind of fallen away.  ES6 gives some new keywords, so we've a nice declarative form.  Make it easier to write and to read - prototype inheritacne, super class, instance and static methods, constructors all that stuff.
+--
+
+=== And the rest ...
+
+----
+
+let event = "nor(DEV)con";
+
+let msg = `Hello everyone at ${event}`'
+
+----
+
+[NOTE.speaker]
+--
+This is a template string, which is similar string interpolation in Perl, Groovy, Python.
+
+There also a mechanism for tagged templates, that lets you implement your own template processor.  JavaScript will do the parsing for you, so you just have to handle the results.  This is particularly good if you need a little DSL, for instance.
+
+--
+
+=== And the rest ...
+
+[%step]
+* Module loaders
+
+* Map & Set, WeakMap & WeakSet
+
+* Symbols
+
+* Subclassable Built-ins
+
+* Promises
+
+* Additional library methods - maths, numbers, strings, arrays, objects
+
+* Binary and octal numeric literals
+
+* Regular expressions
+
+* Unicode
+
+* Tail calls
+
+* Proxies and reflection
+
+--
+Tail calls?  Tail calls are guaranteed not to blow the stack.  Perhaps Brendan is getting Scheme into the browser after all.
+--

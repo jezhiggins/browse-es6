@@ -16,44 +16,10 @@ ES6, officially ECMAScript 6, as ratified as a standard by the good people of th
 The new JavaScript we're writing though.  That can be less crappy.  Quite a lot less.
 --
 
-=== Shiny New Stuff!
-
-Arrow functions
-
-Block scope
-
-Modules
-
-Iterators
-  Generators
-
-Promises
-  async, await
-
-Parameters
-  default parameters
-  rest parameters
-
-Destructuring assignement
-  spread operator
-
-Template literals
-
-Object literals
-
-Classes, inheritance, proxies, properties
-
-Set, Maps, Arrays
-
-Number, maths
-
-RegExps
-
-Loads!
-
 include::features/let-and-const.adoc[]
 include::features/loops.adoc[]
 include::features/iterators.adoc[]
 include::features/destructure.adoc[]
 include::features/parameters.adoc[]
 include::features/arrow-functions.adoc[]
+include::features/other-things.adoc[]

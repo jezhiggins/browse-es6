@@ -142,4 +142,6 @@ const alsoSmallest = Math.min(35, 39, 11, 9);
 
 These two lines are exactly equivalent.
 
+So the last few minutes, looking at the block scope keywords, the for/of loop, that's taken us into iterables and iterators, through into destructuring and the functions parameters, these aren't isolated features - it's not just a bit of syntactic sugar here and there - they all play together and we can see perhaps a stronger, more unified JavaScript.  It's had thought put in, it makes sense - it's consistent across the piece.  What times we live in :)
+
 --
