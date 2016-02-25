@@ -26,3 +26,4 @@ And yea you could.  By the nature of things, your JavaScript execution environme
 So, if you're not already, get using ES6 in your toolchain.  And once you have, start turning it up to 7.
 
 JavaScript has, as I hope I've shown, been quite profoundly changed by ES6, but that's only really the beginning.
+--

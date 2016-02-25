@@ -53,7 +53,7 @@ I'm not really sure how many people write "classes" in JavaScript these days - i
 
 let event = "nor(DEV)con";
 
-let msg = `Hello everyone at ${event}`'
+let msg = `Hello everyone at ${event}`;
 
 ----
 
@@ -69,10 +69,6 @@ There also a mechanism for tagged templates, that lets you implement your own te
 
 [%step]
 * Module loaders
-
-* Map & Set, WeakMap & WeakSet
-
-* Symbols
 
 * Subclassable Built-ins
 
@@ -90,6 +86,7 @@ There also a mechanism for tagged templates, that lets you implement your own te
 
 * Proxies and reflection
 
+[NOTE.speaker]
 --
 Tail calls?  Tail calls are guaranteed not to blow the stack.  Perhaps Brendan is getting Scheme into the browser after all.
 --

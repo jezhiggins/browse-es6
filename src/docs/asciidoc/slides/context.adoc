@@ -45,9 +45,11 @@ Until 2004 thing started to move
 2004 - GMail
 2005 - Google Maps, Opera 9, Firefox 2.0 and things started to go a bit mental
 2006 - Safari
+
+And this is the guy who might well have kicked it all off, Jesse James Garrett of Adaptive Path, who coined the name AJAX - Asynchronous JavaScript and XML.  He didn't  invent it (nor did he claim to), but he gave a name to something that people were doing and, by doing so, made it possible for people to talk about it.  That really, I think, kicked off a new wave of bigger, more interesting JavaScript.  jQuery, which aimed for more concise, more x-platform JS first started in 2006, because of those new browsers.  The Yahoo UI components also came out in 2006.  Firebug.  Crockford published JavaScript: The Good Parts in 2008.  Chrome browser launched in 2008 and the V8 engine at the same time.  JavaScript speed of execution began to become a thing.  Node and Angular first appeared in 2009, Ember in 2011.  And we build and build and here ...
 --
 
-== How Did We Get Here?
+=== How Did We Get Here?
 
 image::jesse-james-garrett.jpg[Jesse James Garrett of Adaptive Path]
 

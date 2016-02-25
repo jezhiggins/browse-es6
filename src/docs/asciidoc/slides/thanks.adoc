@@ -1,4 +1,13 @@
 
-== And There's More ...
+== THANKS
 
-Thanks all
+* JavaScript has been profoundly changed by ES6
+
+* It makes our lives easier
+
+* Which will make our programs better
+
+[NOTE.speaker]
+--
+It's not COBOL any more
+--
