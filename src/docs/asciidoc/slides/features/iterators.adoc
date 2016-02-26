@@ -22,14 +22,14 @@ Has anyone here implemented your iterator or enumerator in C# or in Java, or any
 === Iterators
 
 ----
-let powersOfTwo = {
+const twoTimesTable = {
   [Symbol.iterator]() {
-    let n = 0;
+    let n = 1;
     return {
       next() {
-        if (n == 9)
+        if (n == 11)
           return { done: true };
-        let p = 2**n;
+        const p = 2*n;
         ++n;
         return { done: false, value: p };
       }
@@ -37,14 +37,14 @@ let powersOfTwo = {
   }
 }
 
-for (const p of powersOfTwo) {
+for (const p of twoTimesTable) {
   console.log(p);
 }
 ----
 
 [NOTE.speaker]
 --
-Here's a silly example that returns powers of two.
+Here's a silly example that returns the two times table.
 
 The method for/of looks for is called Symbol.iterator - this is like a magic unpronounable name (a bit like Python's __iter__).  Symbol.iterator returns an object, of any kind you like, that has a method called next().  next() also a returns an object, that has properties done and value.  So long as done is false, or  at least falsey, it pulls out value, and executes the body of the loop.
 
@@ -61,15 +61,15 @@ Writing an iterator isn't, I don't think, particularly tricky but there's a ofte
 === Generators
 
 ----
-let powersOfTwo = {
+const twoTimesTable = {
   [Symbol.iterator]: function*() {
-    for (let n = 0; n != 10; ++n) {
-      yield 2**n;
+    for (let n = 1; n != 11; ++n) {
+      yield 2*n;
     }
   }
 }
 
-for (const p of powersOfTwo) {
+for (const p of twoTimesTable) {
   console.log(p);
 }
 ----

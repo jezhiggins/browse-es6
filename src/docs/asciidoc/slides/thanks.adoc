@@ -10,7 +10,11 @@
 
 
 
-Jez Higgins, @jezhiggins
+Jez Higgins
+
+@jezhiggins
+
+
 [NOTE.speaker]
 --
 It's not COBOL any more
