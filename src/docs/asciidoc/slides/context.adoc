@@ -7,7 +7,8 @@ I don't intend to give an exhaustive history of JavaScript but it's useful, I th
 In 1995, the web was definitely a thing, but it was a much greyer thing
 --
 
-== How Did We Get Here?
+[date-transtion="None"]
+=== How Did We Get Here?
 
 image::grey-web.png[The web was a greyer place in 1995]
 
@@ -20,7 +21,8 @@ The limitations of that were already apparent to people and there were already p
 The big player at the time was obviously Netscape.  Netscape were one of the few web companies you can actually give money to, so their server side kit was pretty popular with people who like to give money to companies.  And, in mid-1995, this man walks in Netscape.
 --
 
-== How Did We Get Here?
+[date-transtion="None"]
+=== How Did We Get Here?
 
 image::brendan-eich.jpg[Brendan Eich]
 
@@ -58,6 +60,7 @@ image::jesse-james-garrett.jpg[Jesse James Garrett of Adaptive Path]
 And this is the guy who might well have kicked it all off, Jesse James Garrett of Adaptive Path, who coined the name AJAX - Asynchronous JavaScript and XML.  He didn't  invent it (nor did he claim to), but he gave a name to something that people were doing and, by doing so, made it possible for people to talk about it.  That really, I think, kicked off a new wave of bigger, more interesting JavaScript.  jQuery, which aimed for more concise, more x-platform JS first started in 2006, because of those new browsers.  The Yahoo UI components also came out in 2006.  Firebug.  Crockford published JavaScript: The Good Parts in 2008.  Chrome browser launched in 2008 and the V8 engine at the same time.  JavaScript speed of execution began to become a thing.  Node and Angular first appeared in 2009, Ember in 2011.  And we build and build and here ...
 
 --
+
 
 == How Did We Get Here? By Accident
 
