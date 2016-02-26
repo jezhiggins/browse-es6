@@ -51,7 +51,7 @@ I'm not really sure how many people write "classes" in JavaScript these days - i
 
 ----
 
-let event = "nor(DEV)con";
+let event = "nor(DEV):con";
 
 let msg = `Hello everyone at ${event}`;
 

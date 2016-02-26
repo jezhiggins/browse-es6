@@ -1,5 +1,6 @@
 = A Browse Through ES6
-Jez Higgins, jez@jezuk.co.uk
+Jez Higgins, @jezhiggins
+
 :revealjs_center: false
 :revealjs_progress: false
 
