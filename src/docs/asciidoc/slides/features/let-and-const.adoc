@@ -25,28 +25,12 @@ Declaring a variable with `let` rather than `var` introduces with block scope, a
 console.log(x); // ERROR!
 ----
 
-[data-transition="none"]
-=== Block Scope
+[NOTE.speaker]
+--
+ES6 introduces sane scoping, that actual living humans can understand.
 
-----
-{
-  var x = 0;
-  // ---
-}
-console.log(x);
-----
-
-[data-transition="none"]
-=== Block Scope
-
-----
-{
-  console.log(x);
-  // ---
-  var x = 0;
-  // ---
-}
-----
+Declaring a variable with `let` rather than `var` introduces with block scope, and it is created and initialised at the point of declaration.  Compare this to the insane scoping of `var` which has function scope, is visible throughout the function regardless of where it is declared, and is only initialised once you get to the declaration.
+--
 
 [data-transition="none"]
 === Block Scope
@@ -60,17 +44,12 @@ console.log(x);
 }
 ----
 
-[data-transition="none"]
-=== Block Scope
+[NOTE.speaker]
+--
+ES6 introduces sane scoping, that actual living humans can understand.
 
-----
-console.log(x);
-// ---
-{
-  var x = 0;
-  // ---
-}
-----
+Declaring a variable with `let` rather than `var` introduces with block scope, and it is created and initialised at the point of declaration.  Compare this to the insane scoping of `var` which has function scope, is visible throughout the function regardless of where it is declared, and is only initialised once you get to the declaration.
+--
 
 [data-transition="none"]
 === Block Scope

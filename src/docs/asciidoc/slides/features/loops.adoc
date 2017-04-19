@@ -1,7 +1,7 @@
 == For loops
 
 ----
-for(let i = 0; i != 10; ++i) {
+for (let i = 0; i != 10; ++i) {
   // ---
 }
 // ---
@@ -17,9 +17,9 @@ As we leave this loop here, i is out of scope and so there's no pollution of the
 === For loops
 
 ----
-const arr = [1, 2, 3, 4, 5];
+const arr = [2, 4, 6, 8, 10];
 
-for(let i in arr) {
+for (let i in arr) {
   let v = arr[i];
   // ---
 }
@@ -34,9 +34,9 @@ Or in this for/in loop.
 === For loops
 
 ----
-const arr = [1, 2, 3, 4, 5];
+const arr = [2, 4, 6, 8, 10];
 
-for(const i in arr) {
+for (const i in arr) {
   let v = arr[i];
   // ---
 }
@@ -51,7 +51,7 @@ More interestingly, we can use const here too.  Each time we go round the loop, 
 === For loops
 
 ----
-const arr = [1, 2, 3, 4, 5];
+const arr = [2, 4, 6, 8, 10];
 
 for (const v of arr) {
   // ---
@@ -61,13 +61,17 @@ for (const v of arr) {
 [NOTE.speaker]
 --
 If looping over arrays is a thing you do, you might be interested in for/of.  Here, rather than giving you the index, so you need to look things up for/of over an array hands you back the values.
+
+Yea, but so what? I can do that with a forEach method, or a jquery.each.  for/of has break and continue.
+
+But those methods give me index and value!  Ok then
 --
 
 [data-transition="none"]
 === For loops
 
 ----
-const arr = [1, 2, 3, 4, 5];
+const arr = [2, 4, 6, 8, 10];
 
 for (const [i, v] of arr.entries()) {
   // ---
