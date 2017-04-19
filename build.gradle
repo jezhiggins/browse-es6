@@ -111,12 +111,17 @@ task asciidoctorPdf( type : org.asciidoctor.gradle.AsciidoctorTask ) {
         include "${audience}.adoc"
     }
 
-    resources {}
+    resources {
+        from('src/docs/asciidoc') {
+            include 'images/**'
+            exclude 'images/diag-*.png.cache'
+        }
+    }
 
     doFirst {
         copy {
-          from('src/docs/asciidoc') {
-              include 'images/**'
+          from('src/docs/asciidoc/images') {
+              include '**'
               // exclude 'images/diag-*.png.cache'
           }
           into file("${outputDir}/pdf/images")
