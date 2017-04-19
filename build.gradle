@@ -66,21 +66,6 @@ asciidoctor {
       'imagesdir'    : 'images'
 }
 
-
-task downloadRevealsJS( type : org.ysb33r.gradle.vfs.tasks.VfsCopy ) {
-  from "${revealjsUrl}/archive/${revealjsVersion}.zip"
-  into file("${revealjsDir}")
-}
-
-task downloadRevealsJSTemplates( type : org.ysb33r.gradle.vfs.tasks.VfsCopy ) {
-  from "${revealjsTemplateUrl}/archive/${revealjsTemplateVersion}.zip"
-  into file("${downloadDir}/revealjs-backends")
-}
-
-task download {
-  finalizedBy downloadRevealsJS,downloadRevealsJSTemplates
-}
-
 task asciidoctorHtml( type : org.asciidoctor.gradle.AsciidoctorTask ) {
     requires 'asciidoctor-diagram'
 
