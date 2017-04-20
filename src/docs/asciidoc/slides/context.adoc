@@ -2,7 +2,7 @@
 
 [NOTE.speaker]
 --
-I don't intend to give an exhaustive history of JavaScript but it's useful, I think, to know a bit of what went on and where ti came from, because it helps explain (or least lets us speculate) as to why JavaScript was as it was.
+I don't intend to give an exhaustive history of JavaScript but it's useful, I think, to know a bit of what went on and where it came from, because it helps explain (or least lets us speculate) as to why JavaScript was as it was.
 
 In 1995, the web was definitely a thing, but it was a much greyer thing
 --
@@ -14,7 +14,7 @@ image::grey-web.png[The web was a greyer place in 1995]
 
 [NOTE.speaker]
 --
-So we have here many of the elements of the web we know now - search engine, news site, eBay! Ecommerce existed - Amazon was around then (and still a book shop), Paul Graham was building Yahoo Shops and already starting to bang about Lisp, Interflora I think had a website.  But any interactivity you had - here's my bid - happened on the server side.  You filled in a form, submitted, server did some stuff, and you got some HTML back.  It might be HTML just for you, but all the action was on the back end.
+So we have here many of the elements of the web we know now - search engine, news site, eBay! Ecommerce existed - Amazon was around then (and still a book shop), Paul Graham was building Yahoo Shops and already starting to bang on about Lisp, Interflora I think had a website.  But any interactivity you had - here's my bid, send my Mum some flowers - happened on the server side.  You filled in a form, submitted it, server did some stuff, and you got some HTML back.  It might be HTML just for you, but all the action was on the back end.
 
 The limitations of that were already apparent to people and there were already people working on it.  The Viola browser, for instance, had some scripting capabilities.  Internet Explorer didn't appear until August 1995, but you can bet MS had something OLE based in the works.
 
@@ -36,7 +36,7 @@ It was deadlines - they wanted to get the Navigator 2 beta out, they'd already s
 
 To be fair to Eich, he did take another couple of weeks in the autumn of 1996 to rewrite the Netscape JavaScript engine.  So, it's not quite true to say JavaScript was built in 10 days.  It's nearer a month.
 
-That compressed timeframe, coupled with the limited context, perhaps explains some of JavaScripts idiosyncracies (shortcomings). Fortunately/unfortunately, however you look at it, JavaScript took off - by the middle of 1996 it was shipping IE as well - and it was already pretty much established as the de facto language of the browser.  By the end of 1996, it was into a standards process (albeit it an obscure one) with the first version of ECMA-262 published in June 1997.  The second edition (which was really just some editorial changes) came out June 1998, and the third edition (which added regexes, string methods, try/catch, do/while)  in December 1999.  The fourth edition of the standard foundered though - Netscape & Eich pulling one way, Adobe, Microsoft and other all sticking their oars in.  The browser wars were kicking off.  "Web innovation" happened in other places.
+That compressed timeframe, coupled with the limited context, perhaps explains some of JavaScripts idiosyncracies (shortcomings). Fortunately/unfortunately, however you look at it, JavaScript took off - by the middle of 1996 it was shipping IE as well - and it was already pretty much established as the de facto language of the browser.  By the end of 1996, it was into a standards process (albeit it an obscure one) with the first version of ECMA-262 published in June 1997.  The second edition (which was really just some editorial changes) came out June 1998, and the third edition (which added regexes, string methods, try/catch, do/while)  in December 1999.  iThat's when the shine started to rub off. The fourth edition of the standard foundered though - Netscape & Eich pulling one way, Adobe, Microsoft and others pulling different directions. The browser wars were kicking off, and the JavaScript consensus was fell apart. "Web innovation" started to happen in other places.
 
 1996 - IFrame
 1998 - XMLHTTP wrapper around the MSXML component
@@ -48,7 +48,7 @@ Until 2004 thing started to move
 2005 - Google Maps, Opera 9, Firefox 2.0 and things started to go a bit mental
 2006 - Safari
 
-And this is the guy who might well have kicked it all off, Jesse James Garrett of Adaptive Path, who coined the name AJAX - Asynchronous JavaScript and XML.  He didn't  invent it (nor did he claim to), but he gave a name to something that people were doing and, by doing so, made it possible for people to talk about it.  That really, I think, kicked off a new wave of bigger, more interesting JavaScript.  jQuery, which aimed for more concise, more x-platform JS first started in 2006, because of those new browsers.  The Yahoo UI components also came out in 2006.  Firebug.  Crockford published JavaScript: The Good Parts in 2008.  Chrome browser launched in 2008 and the V8 engine at the same time.  JavaScript speed of execution began to become a thing.  Node and Angular first appeared in 2009, Ember in 2011.  And we build and build and here ...
+Around this time, JavaScript suddenly got interesting again.  
 --
 
 === How Did We Get Here?
@@ -57,7 +57,7 @@ image::jesse-james-garrett.jpg[Jesse James Garrett of Adaptive Path]
 
 [NOTE.speaker]
 --
-And this is the guy who might well have kicked it all off, Jesse James Garrett of Adaptive Path, who coined the name AJAX - Asynchronous JavaScript and XML.  He didn't  invent it (nor did he claim to), but he gave a name to something that people were doing and, by doing so, made it possible for people to talk about it.  That really, I think, kicked off a new wave of bigger, more interesting JavaScript.  jQuery, which aimed for more concise, more x-platform JS first started in 2006, because of those new browsers.  The Yahoo UI components also came out in 2006.  Firebug.  Crockford published JavaScript: The Good Parts in 2008.  Chrome browser launched in 2008 and the V8 engine at the same time.  JavaScript speed of execution began to become a thing.  Node and Angular first appeared in 2009, Ember in 2011.  And we build and build and here ...
+And this is the guy who might well have kicked it all off, Jesse James Garrett of Adaptive Path, who coined the name AJAX - Asynchronous JavaScript and XML.  He didn't  invent it (nor did he claim to), but he gave a name to something that people were doing and, by doing so, made it possible for people to talk about it.  That really, I think, started a new wave of bigger, more interesting JavaScript.  jQuery, which aimed for more concise, more x-platform JS first started in 2006, because of those new browsers.  The Yahoo UI components also came out in 2006.  Firebug.  Crockford published JavaScript: The Good Parts in 2008.  Chrome browser launched in 2008 and the V8 engine at the same time.  JavaScript speed of execution began to become a thing.  Node and Angular first appeared in 2009, Ember in 2011.  And we built some really big and impressive bits of software ...
 
 --
 
@@ -66,9 +66,14 @@ And this is the guy who might well have kicked it all off, Jesse James Garrett o
 
 image::pikesley-javascript.png[Sam has a low opinion of JavaScript]
 
+image::kelly-javascript.png[And so do someother people]
+
 [NOTE.speaker]
 --
-But, despite all this, the language itself was static.  ECMAScript 4 was finally abandoned in 2008, while ECMAScript 5 published at the end of 2009 added strict mode, the trailing comma, getters and setters, and a few library methods, most notably for handling JSON.  But, so what?  Too late - everyone was using jQuery or some other library for that anyway.  Despite some fairly hefty efforts, all we got were a few farts-in-the-web-dev-bath.   After all that time, and after the huge, huge growth in the use of JavaScript - it's everywhere! - the language itself  was essentially the one that Brendan Eich had splurged out in those few days fourteen/fifteen years earlier.
+
+... in a language people really don't like.  
+
+But, despite all this stuff going on, the language itself was static.  ECMAScript 4 was finally abandoned in 2008, while ECMAScript 5 published at the end of 2009 added strict mode, the trailing comma, getters and setters (which pretty much nobody uses), and a few library methods, most notably for handling JSON.  But, so what?  It was too late - everyone was using jQuery or some other library for that anyway.  Despite some fairly hefty efforts, all we got were a few farts-in-the-web-dev-bath.   After all that time, and after the huge, huge growth in the use of JavaScript - it really is everywhere and in everything! - the language itself was essentially the one that Brendan Eich had splurged out in those few days fourteen/fifteen years earlier.
 
 This isn't a detailed history, but hope the thrust is clear - we've arrived in this place where we're building big applications on a substrate that was, with the best will in the world, hacked out and which was never intended for the kind of application development we routinely try and do with it now.  But here we are - JavaScript is the language we have and it's never going away.  It is the COBOL of web development.
 
