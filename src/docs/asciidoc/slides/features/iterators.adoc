@@ -1,3 +1,4 @@
+[data-transition='None']
 == Iterators
 
 ----
@@ -5,7 +6,7 @@ let m = new Map();
 m.set("hat", "Red");
 m.set("flavour", "Mint");
 
-for (let [k, v] of m) {
+for (const [k, v] of m) {
   ...
 }
 ----
@@ -14,11 +15,12 @@ for (let [k, v] of m) {
 --
 The map iterator, as you might expect, returns a series of key-value pairs.
 
-(I'm not going to say anything more about Map, other than to note it exists.  There's also a new Set class, along with WeakMap and WeakSet.)
+(I'm not going to say much more about Map, other than to note it exists, that keys can be objects of any type (not just strings and symbols), it has a sane size method, and it iterates in a sensible way.  For ad-hoc data structures, you might want to consider them in place of objects.  There's also a new Set class, along with WeakMap and WeakSet.)
 
-Has anyone here implemented your iterator or enumerator in C# or in Java, or anything like that?  Maybe a LINQ method, something of that sort?  You should! I used to give a talk where I banged about how you should, or at least you should have it as an option.  JavaScript hasn't given you the option until now, but here it is.  Implementing iterable and iterator in JavaScript is dead easy.  JavaScript doesn't have interfaces, in the same way that Java or C# have, so you can think of it as convention or a protocol or something like that.
+Has anyone here implemented your iterator or enumerator in C# or in Java, or anything like that?  Maybe a LINQ method, something of that sort?  You should! I used to give a talk where I banged about how you should, or at least you should have it as an option.  JavaScript hasn't given you the option until now, but here it is.  Implementing iterable and iterator in JavaScript is dead easy.  JavaScript doesn't have interfaces, in the same way that Java or C# have, so you can think of it as convention or what we'd call in Python a protocol or something like that.
 --
 
+[data-transition='None']
 === Iterators
 
 ----
@@ -27,8 +29,7 @@ const twoTimesTable = {
     let n = 1;
     return {
       next() {
-        if (n == 11)
-          return { done: true };
+        if (n == 11) return { done: true };
         const p = 2*n;
         ++n;
         return { done: false, value: p };
@@ -46,13 +47,7 @@ for (const p of twoTimesTable) {
 --
 Here's a silly example that returns the two times table.
 
-The method for/of looks for is called Symbol.iterator - this is like a magic unpronounable name (a bit like Python's __iter__).  Symbol.iterator returns an object, of any kind you like, that has a method called next().  next() also a returns an object, that has properties done and value.  So long as done is false, or  at least falsey, it pulls out value, and executes the body of the loop.
-
-What you do in next() is entirely up to you.  On the server side, for instance, you might be reading lines from a file, pulling values from a database cursor, something like that.  On the client side, it could be paging though a JSON api, walking the DOM, go crazy.
-
-One of the particularly cool things about this iterable/iterator protocol is that it lets other, custom, data structures - trees, queues, whatever - or data sources that work in the same way as built ins.  It also opens the door to libraries along the lines of LINQ or Java streams that can operate over arbitrary structures.  If you think a library like lodash, for instance, it has a whole load of really useful functions - find and drop and take and so - but they operate on arrays and return arrays. So have to realise that array - load all your stuff from the database or from your JSON call, or whatever it is, and have it all there.
-
-So this is cool stuff right here.
+The method for/of looks for is called Symbol.iterator - this is like a magic unpronounable name (a bit like Python's _ _ iter _ _).  Symbol.iterator returns an object of any kind you like - something ad hoc like I have here, a built in type, a class you've descripted with a prototype and all that gubbins - anything you like so long as it has a method called next().  next() should also return an object, an object that has two properties - done and value.  So long as done is false, or  at least falsey, it pulls out value, and executes the body of the loop.
 
 Writing an iterator isn't, I don't think, particularly tricky but there's a often a bit of housekeeping involved, and in the JavaScript case here, it all gets a bit curly bracket-tastic.  Happily, there's additional language support to help
 --
@@ -63,7 +58,7 @@ Writing an iterator isn't, I don't think, particularly tricky but there's a ofte
 ----
 const twoTimesTable = {
   [Symbol.iterator]: function*() {
-    for (let n = 1; n != 11; ++n) {
+    for (let n = 1; n <= 10; ++n) {
       yield 2*n;
     }
   }
@@ -78,11 +73,56 @@ for (const p of twoTimesTable) {
 --
 This is identical in operation to the previous example, but for less typing and, more importantly, lower comprehension overhead. Less brainpower.
 
-function* returns a generator instance, with yield returning successive values.  Again, the body of this can be whatever you like.
+function* returns a generator instance, a generator instance is iterable with yield returning successive values.  Again, the body of this can be whatever you like.
 
-Here I'm using a generator to implement an iterator, but you could also use them for observers, or for cooperative multi-tasking via coroutines (producer/consumer pairs).  That's beyond what we've got time for here, but just lodge that the possibilities are there.
+What you do in next()/the generator body is entirely up to you.  On the server side, for instance, you might be reading lines from a file, pulling values from a database cursor, something like that.  On the client side, it could be paging though a JSON api, walking the DOM, go crazy.  It doesn't have to be in a loop - you can have multiple yields if you like, just one after another.  There's also a yield* to yield over an iterator,or another generator.  Slightly wackily, you can even pass values into a generator's yield.  That's a bit specialist, and so I'm just going to let you know you can.
 
-So for/of loops over anything iterable - built-in things like Arrays, Strings, Maps, Sets - but also anything else that we care to write - trees, queues, data sources.
+One of the particularly cool things about this iterable/iterator protocol is that it lets other, custom, data structures - trees, queues, whatever - or data sources that work in the same way as built ins.  It also opens the door to libraries along the lines of LINQ or Java streams that can operate over arbitrary structures.  If you think of a library like lodash (or, indeed the new Array methods added in ES6 itself), for instance, it has a whole load of really useful functions - find and drop and take and so - but they operate on arrays and return arrays. So have to realise that array - load all your stuff from the database or from your JSON call, or whatever it is, and have it all there.
+
+So this is cool stuff right here.
+
+I've given a version of this talk before, and in that I blythely asserted that the LINQ for JS stuff was true, but didn't actually do anything to demonstate it.  This time, I thought I should.  
+
+--
+
+[data-transition='None']
+=== Stand aside Lodash
+
+----
+const arr = [1,2,3,4,5, ........, n];
+
+const first_even_number = from(arr).filter(n => n%2).first();
+----
+
+[NOTE.speaker]
+--
+Now this doesn't look so remarkable, but consider that all this is doing is setting things up until we call first.  That call effective pulls a result through this processing pipeline.
+
+If we do this with arrays, then at each stage we're exahaustively evaluating, potentially doing a load of redundant work.
+
+Assuming, of course, you can even do that work in the first place.
+--
+
+[data-transition='None']
+=== Stand aside Lodash
+
+----
+function* randomInterval(min, max) {
+    for(;;)
+	yield Math.floor(Math.random()*(max-min+1)+min);
+}
+
+const first_even_number = 
+    from(randomInterval(50, 150)).filter(n => n%2).first();
+----
+
+[NOTE.speaker]
+--
+This generator produces an infinite sequence but, because it's iterable, we can drop it into the same processing pipeline and do something we couldn't so easily do before.
+
+Here I've been using a generator to implement an iterator, but you could also use them for observers, or for cooperative multi-tasking via coroutines (producer/consumer pairs).  That's beyond what we've got time for here, but just lodge that the possibilities are there.
+
+So for/of loops over anything iterable - built-in things like Arrays, Strings, Maps, Sets - but also anything else that we care to write - trees, queues, data sources.  It can also loop of sequences of unknown or infinite length.  Now that is new, and is kind of exciting.
 
 Different libraries that we use often have a kind of impedance mismatch - as we go forward iterable/iterator will start to break those down, to ease that friction.
 --
