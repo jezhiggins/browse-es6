@@ -1,3 +1,4 @@
+[data-transition="none"]
 == For loops
 
 ----
@@ -14,6 +15,7 @@ You can use let anywhere you might have used var - here in this for loop, for in
 As we leave this loop here, i is out of scope and so there's no pollution of the surrounding scope.
 --
 
+[data-transition="none"]
 === For loops
 
 ----
@@ -60,9 +62,11 @@ for (const v of arr) {
 
 [NOTE.speaker]
 --
-If looping over arrays is a thing you do, you might be interested in for/of.  Here, rather than giving you the index, so you need to look things up for/of over an array hands you back the values.
+If looping over arrays is a thing you do, you might be interested in for/of.  If looping over arrays isn't something you do, you might still be interested in for/of.  That's a spoiler.
 
-Yea, but so what? I can do that with a forEach method, or a jquery.each.  for/of has break and continue.
+Here, rather than giving you the index, so you need to look things up for/of over an array hands you back the values.
+
+Yea, but so what? I can do that with a forEach method, or a jquery.each.  for/of is a language construct, it has break and continue, you can return early, you don't need a closure.
 
 But those methods give me index and value!  Ok then
 --
@@ -80,7 +84,7 @@ for (const [i, v] of arr.entries()) {
 
 [NOTE.speaker]
 --
-If you want index and value, you can have that to.  There's actually quite a lot going here, so let's break it down a bit.
+If you want index and value, you can have that to.  There's actually quite a lot going here - I'd almost go so far as to say this is the Rosetta Stone of ES6 - so let's break it down a bit.
 
 arr.entries() returns a series of index/values pairs.
 
@@ -88,5 +92,5 @@ const [i, v] = splits those pairs apart, assigning the first bit (which happens 
 
 I said, arr.entries() returns a series of index/value pairs. It's not returning all in one lump, in one array, in one go.  What arr.entries() actually returns is an iterator.  for/of, surprisingly enough, iterates over it, executing the body of the loop until the iterator is exhausted (or we've broken out of the loop).
 
-You'll probably be familiar with iterators from Java, or C# or Ruby where they're called enumerators. The for/of works with any iterable type. An iterable type is one that implements a special method, and that method returns an iterator.   One example is the new Map type
+You'll probably be familiar with iterators from Java, or C#, or Python, or Ruby where they're called enumerators. The for/of works with any iterable type. An iterable type is one that implements a special method, and that method returns an iterator.   One example this is the new Map type
 --
