@@ -13,7 +13,7 @@ KHP can trace its history back to mid-1800. The Junior section provides training
 
 I'm making this rather oblique introduction because I don't want to tout my "experience" as any kind of credential. Over the course of what I laughingly call my career I've had the opportunity to work on a number of interesting things, and with a number (a smaller number) of very good and interesting people. I don't want to claim that what I've done makes me especially, or even particularly, qualified. In the grand scheme of things, I've had a pretty mundane career. Over the past 25 years or so I have, like I guess most of you, written a lot of software that nobody here will have heard of. Any lawyers, solicitors in the room? Planetary scientists? Midwives? Golf course head greenskeepers? You see?  I'm going to talk today about some things I've learned over the last year or two, and hoepfully they'll be of interest to you and helpful in your mundane careers.
 
-When I first thought about this talk I thought 'A Browse Through ES6' was a nice, gently punning title, but having seen some of the other talks here, I probably should have gone for something more agressive and 'agiley'.  I thought about a sprint, but there's a lot of new stuff in ES6 so I'd end up just firing out words and all end up exhausted and shellshocked.  May a spike would be better - I want to focus on the parts of ES6 that I think are the most useful and significant, and maybe just give some pointers to some of the other bits.  I'm also going to have a look at how you can use ES6 now, today, and into the future.
+When I first thought about this talk I thought 'A Browse Through ES6' was a nice, gently punning title, but having seen some of the other talks here, I probably should have gone for something more agressive and 'agiley'.  I thought about a sprint, but there's a lot of new stuff in ES6 so I'd end up just firing out words and all end up exhausted and shellshocked.  Maybe a spike would be better - I want to focus on the parts of ES6 that I think are the most useful and significant, and maybe just give some pointers to some of the other bits.  I'm also going to have a look at how you can use ES6 now, today, and into the future.
 --
 
 == You Should Leave If ...
@@ -26,7 +26,7 @@ When I first thought about this talk I thought 'A Browse Through ES6' was a nice
 
 [NOTE.speaker]
 --
-There are four other sessions running right now and if, having heard my introductory burblings, you think you're going to have a better time elsewhere, please do get up and go.  Tjelvar's sessions sounds really fascinating and Burkhard's machine learning is probably going to be good fun, so if you want to go please do, I don't mind and I'd even prefer it.
+There are four other sessions running right now and if, having heard my introductory burblings, you think you're going to have a better time elsewhere, please do get up and go.  Odin's session on @post-Modern C++ Design" looks really interested, and if I wasn't here I'd be in Steve Love's session, so if there's something else that grabs you more, please do head out.  It's fine.
 --
 
 == Perhaps Stay If ...
@@ -36,9 +36,9 @@ There are four other sessions running right now and if, having heard my introduc
 
 [NOTE.speaker]
 --
-Are at least one of your things.  I've been working with JavaScript for 20 years and it's almost never been the primary focus or the main language we've been using.  Now obviously over the course of the past few years, and particularly with the emergence of tools like Node.js and client-side frameworks like Ember, Angular, and React, there are more and more people who spent their entire programming time working in JavaScript.  However, my impression is that for most people JavaScript is one of their "other skills".  Is that fair?  Can we take the temperature of the room?  Who is a full-time-no-other-language-shall-cross-my-keyboard JavaScript programmer?  And for everyone else, I assume you're in the "other skills' camp?  What's your main language? Java? C-sharp? C++? What?
+Or at least one of your things.  Without wanting to come over too greybeardy, I've been working with JavaScript since before it was called JavaScript and, that brief early moment aside and three days a couple of weeks ago, it's pretty much never been the primary focus of the work we've been doing or the main language we've been using, and I suspect that I'm not alone.   Now obviously over the course of the past few years, and particularly with the emergence of tools like Node.js and client-side frameworks like Ember, Angular, and React, there are more and more people who spent their entire programming time working in JavaScript.  However, my impression is that for most people JavaScript is one of their "other skills".  Is that fair?  Can we take the temperature of the room?  Are there any full-time-no-other-language-shall-cross-my-keyboard JavaScript programmers here?  And for everyone else, I assume you're in the "other skills' camp?  What's your main language? Java? C-sharp? C++? What?
 
 So, for you "other skills", you'll have been aware that C-sharp, Java, C++, have all undergone some pretty seisimic changes in the past few years. You might have felt though that while there were lots of interesting things going in JavaScript - libraries like jQuery, lodash, tools like Node, grunt, gulp, frameworks like Ember and so on, there wasn't really anything much going on with JavaScript itself.  JavaScript was JavaScript.  If you wanted language innovation you looked elsewhere - CoffeeScript perhaps, or elsewhere in things like Dart.  But JavaScript was JavaScript and had been for ages.
 
-Spoilers! Not any more, but I guess that's why you're here.
+But as you've surely heard, not any more, but I guess that's why you're here.
 --
