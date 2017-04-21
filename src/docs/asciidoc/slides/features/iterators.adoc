@@ -17,7 +17,7 @@ The map iterator, as you might expect, returns a series of key-value pairs.
 
 (I'm not going to say much more about Map, other than to note it exists, that keys can be objects of any type (not just strings and symbols), it has a sane size method, and it iterates in a sensible way.  For ad-hoc data structures, you might want to consider them in place of objects.  There's also a new Set class, along with WeakMap and WeakSet.)
 
-Has anyone here implemented your iterator or enumerator in C# or in Java, or anything like that?  Maybe a LINQ method, something of that sort?  You should! I used to give a talk where I banged about how you should, or at least you should have it as an option.  JavaScript hasn't given you the option until now, but here it is.  Implementing iterable and iterator in JavaScript is dead easy.  JavaScript doesn't have interfaces, in the same way that Java or C# have, so you can think of it as convention or what we'd call in Python a protocol or something like that.
+Has anyone here implemented your iterator or enumerator in C# or in Java, or anything like that?  Maybe a LINQ method, something of that sort?  You should! I used to give a talk where I banged about how you should, or at least you should have it as an option.  JavaScript hasn't given you the option until now, but here it is.  Implementing iterable and iterator in JavaScript is dead easy.  JavaScript doesn't have interfaces in the same way that Java or C# have, so you can think of it as convention or what we'd call in Python a protocol or something like that.
 --
 
 [data-transition='None']
@@ -25,11 +25,11 @@ Has anyone here implemented your iterator or enumerator in C# or in Java, or any
 
 ----
 const twoTimesTable = {
-  [Symbol.iterator]() {
+  [Symbol.iterator]: function() {
     let n = 1;
     return {
-      next() {
-        if (n == 11) return { done: true };
+      next: function() {
+        if (n > 10) return { done: true };
         const p = 2*n;
         ++n;
         return { done: false, value: p };
@@ -38,9 +38,8 @@ const twoTimesTable = {
   }
 }
 
-for (const p of twoTimesTable) {
+for (const p of twoTimesTable) 
   console.log(p);
-}
 ----
 
 [NOTE.speaker]
@@ -58,24 +57,44 @@ Writing an iterator isn't, I don't think, particularly tricky but there's a ofte
 ----
 const twoTimesTable = {
   [Symbol.iterator]: function*() {
-    for (let n = 1; n <= 10; ++n) {
+    for (let n = 1; n <= 10; ++n) 
       yield 2*n;
-    }
   }
 }
 
-for (const p of twoTimesTable) {
+for (const p of twoTimesTable) 
   console.log(p);
-}
 ----
 
 [NOTE.speaker]
 --
 This is identical in operation to the previous example, but for less typing and, more importantly, lower comprehension overhead. Less brainpower.
 
-function* returns a generator instance, a generator instance is iterable with yield returning successive values.  Again, the body of this can be whatever you like.
+In fact, we can make it even shorter still.
+--
 
-What you do in next()/the generator body is entirely up to you.  On the server side, for instance, you might be reading lines from a file, pulling values from a database cursor, something like that.  On the client side, it could be paging though a JSON api, walking the DOM, go crazy.  It doesn't have to be in a loop - you can have multiple yields if you like, just one after another.  There's also a yield* to yield over an iterator,or another generator.  Slightly wackily, you can even pass values into a generator's yield.  That's a bit specialist, and so I'm just going to let you know you can.
+[data-transition='None']
+=== Generators
+
+----
+const twoTimesTable = {
+  *[Symbol.iterator]() {
+    for (let n = 1; n <= 10; ++n) 
+      yield 2*n;
+  }
+}
+
+for (const p of twoTimesTable) 
+  console.log(p);
+----
+
+[NOTE.speaker]
+--
+A generator is a resumeable function.  When you call yield, it suspends at the point returning that value, and when you call it again it carries on at that point.
+
+function* returns a generator instance, a generator instance is iterable with yield returning successive values.  
+
+What you do in next()/the generator body is entirely up to you.  On the server side, for instance, you might be reading lines from a file, pulling values from a database cursor, something like that.  On the client side, it could be paging though a JSON api, walking the DOM, go crazy.  It doesn't have to be in a loop - you can have multiple yields if you like, just one after another.  There's also a yield* to automatically yield over an iterator, or another generator.  Slightly wackily, you can even pass values into a generator's yield.  That's a bit specialist, and so I'm just going to let you know you can.
 
 One of the particularly cool things about this iterable/iterator protocol is that it lets other, custom, data structures - trees, queues, whatever - or data sources that work in the same way as built ins.  It also opens the door to libraries along the lines of LINQ or Java streams that can operate over arbitrary structures.  If you think of a library like lodash (or, indeed the new Array methods added in ES6 itself), for instance, it has a whole load of really useful functions - find and drop and take and so - but they operate on arrays and return arrays. So have to realise that array - load all your stuff from the database or from your JSON call, or whatever it is, and have it all there.
 
@@ -91,12 +110,14 @@ I've given a version of this talk before, and in that I blythely asserted that t
 ----
 const arr = [1,2,3,4,5, ........, n];
 
-const first_even_number = from(arr).filter(n => n%2).first();
+const first_even_number = from(arr).filter(n => n%2==0).first();
 ----
 
 [NOTE.speaker]
 --
 Now this doesn't look so remarkable, but consider that all this is doing is setting things up until we call first.  That call effective pulls a result through this processing pipeline.
+
+(That's an arrow function in the middle there.  We'll come to those in a second too)
 
 If we do this with arrays, then at each stage we're exahaustively evaluating, potentially doing a load of redundant work.
 
@@ -113,7 +134,7 @@ function* randomInterval(min, max) {
 }
 
 const first_even_number = 
-    from(randomInterval(50, 150)).filter(n => n%2).first();
+    from(randomInterval(50, 150)).filter(n => n%2==0).first();
 ----
 
 [NOTE.speaker]
