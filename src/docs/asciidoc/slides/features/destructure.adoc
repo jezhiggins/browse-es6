@@ -161,6 +161,23 @@ Object destructuring can fetch any propery, including built-in ones.
 
 Array destructuring, well, it's not just for arrays.
 --
+[data-transition="None"]
+=== Destructuring
+
+----
+
+const [w,x,y,z] = "abcdef";
+
+----
+
+[NOTE.speaker]
+--
+Array destructuring, with the square brackets, uses an iterator to get the elements.  Consequently, you can use any iterable value with the destructuring assignment.  In this case, I'm using a string, but it could also be an iterable object, an iterator, or a generator of your own devising.
+
+Now, this destructuring looks great if I know the exact shape of thing, but what if I just want to take some of it, and keep the rest around for later?
+
+--
+[data-transition="None"]
 === Destructuring
 
 ----
@@ -171,8 +188,6 @@ const [head, ...tail] = "abcdef";
 
 [NOTE.speaker]
 --
-Array destructuring, with the square brackets, uses an iterator to get the elements.  Consequently, you can use any iterable value with the destructuring assignment.  In this case, I'm using a string, but it could also be an iterable object, an iterator, or a generator of your own devising.
-
 This notation here, with the three dots, is called the rest operator.  It gathers up all the remaining elements of the array, the iterable, into an array.
 --
 
@@ -190,8 +205,6 @@ const [head, ...tail] = "abcdef";
 
 [NOTE.speaker]
 --
-Array destructuring, with the square brackets, uses an iterator to get the elements.  Consequently, you can use any iterable value with the destructuring assignment.  In this case, I'm using a string, but it could also be an iterable object, an iterator, or a generator of your own devising.
-
 This notation here, with the three dots, is called the rest operator.  It gathers up all the remaining elements of the array, the iterable, into an array.
 --
 
