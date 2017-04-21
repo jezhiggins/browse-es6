@@ -1,0 +1,17 @@
+[data-transition='None']
+== Promises
+
+----
+
+function engageWarpSpeed(factor = max()) {
+  // ---
+}
+
+----
+
+[NOTE.speaker]
+--
+Promises!
+
+--
+
