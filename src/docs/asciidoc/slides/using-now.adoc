@@ -4,7 +4,7 @@
 [%step]
 * You can use it today
 
-* Transpiling through Traceur or Babel
+* Transpiling through Babel
 * Natively with Node
 
 * You *should* use it today
@@ -23,14 +23,24 @@ Well, we could rely on browser support
 
 Of course, in most real-world situations, we don't get to choose the browser.
 
+https://kangax.github.io/compat-table/es6/
+
 So, is all this a far off pipedream and have you just wasted the last half an hour or so?
 
 No!  The answer, as I'm sure you've guessed, is transpilation.  Nearly all the new features can be implemented in ES5 - often in a long-winded way that wouldn't bother to write yourself - but it can be done.  Some of the features towards the bottom of my list there are more difficult - Unicode support, the reflection api, tail calls - it might not be possible to do, but for most features it can be done.  Cross-compilation is, therefore, your friend.
 
-I'm guessing most of already used to concatting and minifying our JavaScript, perhaps with grunt or gulp or brocoli, one of those tools.  And if so, then putting in a ES6 transpiler shouldn't be tricky.  Google Traceur is very good, and so is Babel.
+I'm guessing most of already used to concatting and minifying our JavaScript, perhaps with grunt or gulp or brocoli, one of those tools.  And if so, then putting in a ES6 transpiler shouldn't be tricky.  The crosscompiler of choice is Babel.  They're very good at adding new features and coming features quickly, they provide options for using future stuff that isn't yet ratified, but also, if things are dropped out they drop it out too.  It good, and you're probably already using it.
+
+For several years, the Google Traceur project was also a good option, but that seems to have gone dormant.
+
+Another options is Microsoft's Typescript.  Typescript is a strict superset of ES2015, with options for type annotations.
+
+If you're not running in the browser, then you're presumably on Node.  Node has native support and is doing a fair job of staying current.
+
+If you're doing something weird, like running Javascript embedded in Java using Nashorn, you're out of luck until Java 9.  Transpiliation for you!
 
 Not only can you use ES6 today, I think you should use ES6 today.  It will make your job as programmers easier, you will write less and better code.  That should be reason enough.  Why stick with the fiddly stuff, when a better alternative is there.  However, I believe that if you don't, things will move on without you.  Frameworks and libraries will move, it may take a while, but they will move.  And they won't wait for you.
 
-So, ES5 came out in 2009.  ES6 came out in 2015.  We've got a while, right?  We've got another 5 or 6 years?  Could be retired by then, if my start up makes it big?
+So, ES5 came out in 2009.  ES6 came out in 2015, a gap of six years..  We've got a while, right?  We've got another 5 or 6 years?  Could be retired by then, if my start up makes it big?
 
 --
