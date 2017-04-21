@@ -17,5 +17,8 @@ Jez Higgins
 
 [NOTE.speaker]
 --
+JavaScript has been, and is being profoundly changed, *for the better*
+
+
 It's not COBOL any more
 --
