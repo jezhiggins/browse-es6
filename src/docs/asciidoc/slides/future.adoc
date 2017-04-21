@@ -6,10 +6,6 @@
 
 * ES2017 is almost here
 
-* ES2018 is on the move
-
-* And so is ES2019
-
 [NOTE.speaker]
 --
 So, once we're up to speed on ES6 can we relax for the next 5 and half years?
@@ -18,11 +14,52 @@ In short, No.  JavaScript is now on a cycle - there will be a new timeboxed rele
 
 ES7, or we should really get used to calling ES2016 is already here - it came out in June 2016, although you'd be forgiven for not noticing.  It was a really small releases and includes two small features - Array.prototype.includes, and the exponentiation operator.
 
-ES2017 is almost here, and in fact I've already shown you a small part of it - Object.values and Object.entries.  The big coming thing is async/await, which is going to be super useful, and, believe it or not, shared memory and atomics.  
+ES2017 is almost here, and in fact I've already shown you a small part of it - Object.values and Object.entries.  The big coming thing is async/await, which is going to be super useful, and, believe it or not, shared memory and atomics.
 
-And ES2018.  You can see what's happening where on the Ecmascript/TC39 GitHub repository.
+--
 
-What's in ES2018?  Who knows? SIMD extensions, async iteration, more work on regexes, promise extensions?  Current list is on Github - https://github.com/tc39/proposals
+=== Async/Await
+
+----
+
+async function(request, response) {
+  try {
+    const user = await User.get(request.userId);
+    const notebook = await Notebook.get(user.notebookId);
+    response.send(await doSomethingAsync(notebook));
+  } catch(err) {
+    response.send(err);
+  }
+}
+
+----
+[NOTE.speaker]
+--
+Once we get async/await, we can rewrite our chained thens to look something like this.  If you've done this on .NET it will be familiar.
+
+Now it's entirely linear, we've eliminated even the little arrow functions.  The scope is easier to work with too, plus we have normal try/catch for error handling.
+
+Essentially, await takes a promise, waits for it to settle, then returns that vale.  You can also await on things which aren't promises, and that's fine too.
+
+Once small wrinkle is that you can only use await inside a function that's delcared async.  Async essentially wraps the function in a promise, and the implementation is probably hidden inside a generator, but we don't have to worry about how it works, only that it does.
+--
+
+=== Into The Future
+
+* ES2016 is already here
+
+* ES2017 is almost here
+
+[%step]
+* ES2018 is on the move
+
+* And so is ES2019
+
+[NOTE.speaker]
+--
+ES2018 is already underway.
+
+What's in it?  Who knows? SIMD extensions, async iteration, more work on regexes, promise extensions?  Current list is on Github - https://github.com/tc39/proposals
 
 "Yea, well, I could write a shim/monkeypatch/function that does that ..."
 And yea you could.  By the nature of things, your JavaScript execution environment is always going to be behind your development environment. (Just like Java! and C#! and C++! and ...)  Tools like Babel and Traceur allow us to work with the latest features, while targetting your existing runtime ecosystem.  And yea, while you could write a shim, I'm happy to let someone else do it for me, because a) I'm lazy and b) they'll probably make a better job of it :)
