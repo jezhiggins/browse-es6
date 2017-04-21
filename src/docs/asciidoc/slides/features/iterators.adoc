@@ -7,7 +7,7 @@ m.set("hat", "Red");
 m.set("flavour", "Mint");
 
 for (const [k, v] of m) {
-  ...
+  // ---
 }
 ----
 
@@ -38,7 +38,7 @@ const twoTimesTable = {
   }
 }
 
-for (const p of twoTimesTable) 
+for (const p of twoTimesTable)
   console.log(p);
 ----
 
@@ -57,12 +57,12 @@ Writing an iterator isn't, I don't think, particularly tricky but there's a ofte
 ----
 const twoTimesTable = {
   [Symbol.iterator]: function*() {
-    for (let n = 1; n <= 10; ++n) 
+    for (let n = 1; n <= 10; ++n)
       yield 2*n;
   }
 }
 
-for (const p of twoTimesTable) 
+for (const p of twoTimesTable)
   console.log(p);
 ----
 
@@ -79,12 +79,12 @@ In fact, we can make it even shorter still.
 ----
 const twoTimesTable = {
   *[Symbol.iterator]() {
-    for (let n = 1; n <= 10; ++n) 
+    for (let n = 1; n <= 10; ++n)
       yield 2*n;
   }
 }
 
-for (const p of twoTimesTable) 
+for (const p of twoTimesTable)
   console.log(p);
 ----
 
@@ -92,7 +92,7 @@ for (const p of twoTimesTable)
 --
 A generator is a resumeable function.  When you call yield, it suspends at the point returning that value, and when you call it again it carries on at that point.
 
-function* returns a generator instance, a generator instance is iterable with yield returning successive values.  
+function* returns a generator instance, a generator instance is iterable with yield returning successive values.
 
 What you do in next()/the generator body is entirely up to you.  On the server side, for instance, you might be reading lines from a file, pulling values from a database cursor, something like that.  On the client side, it could be paging though a JSON api, walking the DOM, go crazy.  It doesn't have to be in a loop - you can have multiple yields if you like, just one after another.  There's also a yield* to automatically yield over an iterator, or another generator.  Slightly wackily, you can even pass values into a generator's yield.  That's a bit specialist, and so I'm just going to let you know you can.
 
@@ -100,7 +100,7 @@ One of the particularly cool things about this iterable/iterator protocol is tha
 
 So this is cool stuff right here.
 
-I've given a version of this talk before, and in that I blythely asserted that the LINQ for JS stuff was true, but didn't actually do anything to demonstate it.  This time, I thought I should.  
+I've given a version of this talk before, and in that I blythely asserted that the LINQ for JS stuff was true, but didn't actually do anything to demonstate it.  This time, I thought I should.
 
 --
 
@@ -133,7 +133,7 @@ function* randomInterval(min, max) {
 	yield Math.floor(Math.random()*(max-min+1)+min);
 }
 
-const first_even_number = 
+const first_even_number =
     from(randomInterval(50, 150)).filter(n => n%2==0).first();
 ----
 
