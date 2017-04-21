@@ -1,26 +1,110 @@
+[data-transition='None']
 == And the rest ...
 
+[data-transition='None']
+=== Array Methods
+
 ----
-// lib/maths.js
-export function mult(x y) {
-  return x + y;
-}
+Array.of
 
-// app.js
-import sum from "lib/maths";
-
-let theAnswer = sum(5, 8);
+Array.prototype.map
+Array.prototype.filter
+Array.prototype.reduce
+Array.prototype.includes
+Array.prototype.find
+Array.prototype.findIndex
 ----
-
 
 [NOTE.speaker]
 --
 There are other things too, which I only touch on.
 
-Lots of tools provide some kind of module or package support - AMD, CommonJS - ES6 language support for it.
+Here's an easy one.  Some new Array methods.  There's Array.of which creates a new array from a, what? An iterable.  There are some new lodash/underscore/functional programming type utility methods too.  There don't modify in place - they return new arrays or values.
 --
 
-=== And the rest ...
+[data-transition='None']
+=== Array Methods
+
+----
+const data = Array.of(2, 3, 5, 7, 11);
+                                         // [2, 3, 5, 7, 11]
+const doubled = data.map(n => n*2);
+                                         // [4, 6, 10, 14, 22]
+const smallish = data.filter(n => n<7);
+                                         // [2, 3, 5]
+const total = data.reduce((acc, n) => acc+n, 0);
+                                         // 28
+const biggerThanFive = data.find(n => n>5); 
+                                         // 7
+const idx = data.findIndex(n => n > 5);
+                                         // 3
+----
+
+[data-transition='None']
+=== Object Methods
+
+----
+Object.keys
+Object.values
+Object.entries
+----
+
+[NOTE.speaker]
+--
+There are some useful new methods on Object.  keys enumerates the object's properties (but not the prototype chain, so you don't need that isOwnProperty nonsense, values enumerates the values, entries, as we've touched on, enumerates them in pairs.
+--
+
+[data-transition='None']
+=== Object Methods
+
+----
+const accu_member = {
+  number: '03028',
+  name: 'Jez Higgins',
+  city: 'Birmingham',
+}
+
+for (const key of Object.keys(accu_member)) 
+  console.log(key)
+
+for (const value of Object.values(accu_member)) 
+  console.log(value)
+
+for (const [key, value] of Object.entries(accu_member)) 
+  console.log(`${key} = ${value}`)
+
+----
+
+[NOTE.speaker]
+--
+So this first one will give number, name, city, the next 03028, Jez Higgins, Birmingham, and the last one, the two together.
+
+The `${key} = ${value}` is a template literal.
+--
+
+[data-transition='None']
+=== Template literals
+
+----
+
+let event = "accu2017";
+
+let msg = `Hello everyone at ${event}`;
+
+----
+
+[NOTE.speaker]
+--
+This is a template string, which is similar string interpolation in Perl, Groovy, Python.
+
+This stuff between the curly braces can be arbitrary Javascript, although I wouldn't really recommend that.
+
+There also a mechanism for tagged templates, that lets you implement your own template processor.  JavaScript will do the parsing for you, so you just have to handle the results.  This is particularly good if you need a little DSL, for instance.
+
+--
+
+[data-transition='None']
+=== Class definitions
 
 ----
 
@@ -44,41 +128,41 @@ class View extends Component {
 
 [NOTE.speaker]
 --
-I'm not really sure how many people write "classes" in JavaScript these days - it used to be a thing, but feeling is it's kind of fallen away.  ES6 gives some new keywords, so we've a nice declarative form.  Make it easier to write and to read - prototype inheritacne, super class, instance and static methods, constructors all that stuff.
+I'm not really sure how many people write "classes" in JavaScript these days - it used to be a thing, but feeling is it's kind of fallen away.  ES6 gives some new keywords, so we've a nice declarative form.  Make it easier to write and to read - prototype inheritance, super class, instance and static methods, constructors all that stuff.  Unlike some of what we've seen, this is syntactic sugar, but it's the good kind of sugar :)
+
 --
 
-=== And the rest ...
+[data-transition='None']
+=== Modules
 
 ----
+// lib/maths.js
+export function mult(x y) {
+  return x + y;
+}
 
-let event = "nor(DEV):con";
+// app.js
+import sum from "lib/maths";
 
-let msg = `Hello everyone at ${event}`;
-
+let theAnswer = sum(5, 8);
 ----
 
 [NOTE.speaker]
 --
-This is a template string, which is similar string interpolation in Perl, Groovy, Python.
-
-There also a mechanism for tagged templates, that lets you implement your own template processor.  JavaScript will do the parsing for you, so you just have to handle the results.  This is particularly good if you need a little DSL, for instance.
-
+Lots of tools provide some kind of module or package support - AMD, CommonJS - but there's now a standard syntax for it.
 --
 
+[data-transition='None']
 === And the rest ...
 
 [%step]
-* Module loaders
-
-* Subclassable Built-ins
-
-* Promises
-
 * Additional library methods - maths, numbers, strings, arrays, objects
 
 * Binary and octal numeric literals
 
 * Regular expressions
+
+* Subclassable Built-ins
 
 * Unicode
 
@@ -86,7 +170,11 @@ There also a mechanism for tagged templates, that lets you implement your own te
 
 * Proxies and reflection
 
+* Module loaders
+
 [NOTE.speaker]
 --
 Tail calls?  Tail calls are guaranteed not to blow the stack.  Perhaps Brendan is getting Scheme into the browser after all.
+
+This list is roughly ordered in how often I expect to ever use these particular features
 --
