@@ -3,15 +3,183 @@
 
 ----
 
-function engageWarpSpeed(factor = max()) {
-  // ---
+function handler(request, response) {
+  User.get(request.userId,
+      user => {
+        Notebook.get(user.notebookId,
+	    notebook => {
+	      doSomethingAsync(notebook,
+	        result => response.send(result)
+		error => response.send(error);
+	    },
+	    error => response.send(error);
+      },
+      error => response.send(err);
+  );
 }
 
 ----
 
 [NOTE.speaker]
 --
-Promises!
+I'm sure you're all familiar with "callback hell".  It's part of life on Node, and it's a routine part of client side too.  jQuery, Angular, and Ember are all built around callbacks.
+
+Even using arrow functions to reduce the visual clutter, it's not at all easy to see what's going on here.
+
+All we're trying to do is load some user details, grab something belonging to them, and then do something with it.   But because these calls to the server or whatever are asynchronous we need to pass in callbacks that get invoked on completion, and we end up with this kind of deeply nested nonsense.  We also get duplication in the error case.  (I mean we could partially eliminate that, but some APIs don't give you that option).
+
+This is the kind of situation that promises help with.
+--
+
+[data-transition="None"]
+=== Promises
+
+----
+
+function asyncFunc() {
+    return new Promise(
+        (resolve, reject) => {
+            // ---
+            resolve(result);
+            // ---
+            reject(error);
+        });
+}
+
+asyncFunc()
+  .then(result => { ... })
+  .catch(error => { ··· });
+
+----
+
+[NOTE.speaker]
+--
+Promises are an alternative to callbacks for delivering the results of an async operation.  If you're implementing an async function they might require a bit more work, but your users will love you.
+
+So here we've defined a function doing some kind of asynchronous work.  Calling that function returns a Promise.  Internally, we're doing our async thing - ie almost anything in the node library - and if it works, we signal that by calling resolve with my return value.  If it all goes wrong, then we call reject.
+
+We invoke that function like this.  We call the function which gives us our promise.  When the promise resolves, it calls then.  If the promise is rejected it calls catch.
+
+You can how this might help.  But what's really cool is we can chain then calls.
+--
+
+[data-transition="None"]
+=== Promises
+
+----
+
+asyncFunc()
+  .then(result1 => {
+    return anotherAsyncFunction(result1);
+  })
+  .then(result2 => {
+    // ---
+  })
+  .catch(error => {
+    // ---
+  });
+
+----
+
+[NOTE.speaker]
+--
+
+then() always returns a promise, which means we can chain the method calls, and they are invoked in turn.  How the promise is resolved depends on what its callback does.
+* If it returns a promise (as in first line here), the resolution is forwarded
+* if it results a different value, that value is uses to settle the then()
+* if it throws an exception, that promise is rejected.
+
+Rejected promises propogate down the chain, so the catch method at the end will handle all the errors.
+
+That means within the then we can do more async work, or something entirely linear and sync, and the right thing will just happen.
+
+So, if we had a promise version of our initial example, it might look something like this
 
 --
 
+[data-transition="None"]
+=== Promises
+
+----
+
+function handler(request, response) {
+  User.get(request.userId)
+    .then(user => Notebook.get(user.notebookId))
+    .then(notebook => doSomethingAsync(notebook))
+    .then(result => response.send(result))
+    .catch(error => response.send(error));
+}
+
+----
+
+[NOTE.speaker]
+--
+When we chain calls through then, they're executed sequentially one after another.  It's great.
+
+Unless you actually can and do want them executed in parallel.
+
+--
+
+[data-transition="None"]
+=== Promises
+
+----
+
+Promise.all([
+  asyncFunc1();
+  asyncFunc2();
+])
+.then(([result1, result2] => {
+  // ---
+})
+.catch(error => {
+  // ---
+});;
+
+----
+
+[NOTE.speaker]
+--
+Promise.all enables you to be notified one all the results are in (it's like a fork/join).  You give it an array (in fact an iterable) of promises, and it's output is a single promise who's result is an array of all the results.
+
+If one of them fails, then we go immediately to the catch.
+
+Catch is always optional, by the way.  If it's not present, then the error propogates off the end of the then chain and is raised as an exception.
+
+Working with promises really is much, much easier that with callbacks.  In most cases, it's actually quite easy to through a promise around
+--
+
+[data-transition='None']
+=== Promises
+
+----
+
+function httpGet(url) {
+  return new Promise((resolve, reject) => {
+      const request = new XMLHttpRequest();
+      request.onload = function() {
+        if (this.status === 200)  // Success
+          resolve(this.responseText);
+        else                      // Something went wrong (404 etc.)
+          reject(new Error(this.statusText));
+      };
+      request.open('GET', url);
+      request.send();
+    });
+}
+httpGet('http://www.jezuk.co.uk/')
+  .then(body => console.log(body))
+  .catch(reason => console.error(`OOPS: ${reason}`));
+
+----
+
+[NOTE.speaker]
+--
+Here's I've wrapped an XMLHttpRequest in a promise, and we've got exactly the shape we looked at earlier.
+
+Note that because of the slightly wacky way XMLHttpRequest is specified, we can't use arrow functions for the onload or onerror callbacks.  Remember how they bind to this?  Well, in here, we need this to be the calling object, the XMLHttpRequest, so we have to use anonymous methods.
+
+Note also, when we invoke the HttpGet the body is executed, and even though it appears to just fall off the end once we've called request.send, the promise doesn't settle until either resolve or reject is called.
+
+Cool, huh?
+--
