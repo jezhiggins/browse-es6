@@ -2,11 +2,13 @@
 == Into The Future
 
 [%step]
-* ES2016 is already on the move
+* ES2016 is already here
 
-* So is ES2017
+* ES2017 is almost here
 
-* And ES2018
+* ES2018 is on the move
+
+* And so is ES2019
 
 [NOTE.speaker]
 --
@@ -14,16 +16,18 @@ So, once we're up to speed on ES6 can we relax for the next 5 and half years?
 
 In short, No.  JavaScript is now on a cycle - there will be a new timeboxed release each year - the features that are done are in, those that aren't are out.
 
-ES7, or we should really get used to calling ES2016 is already in train.  And so is ES2017.  And ES2018.  You can see what's happening where on the Ecmascript/TC39 GitHub repository.
+ES7, or we should really get used to calling ES2016 is already here - it came out in June 2016, although you'd be forgiven for not noticing.  It was a really small releases and includes two small features - Array.prototype.includes, and the exponentiation operator.
 
-What's in ES2016?  Don't know yet, but possibles include Object.values/Object.entries, some string methods, async/await,  SIMD extensions, atomic operations, tuples.
+ES2017 is almost here, and in fact I've already shown you a small part of it - Object.values and Object.entries.  The big coming thing is async/await, which is going to be super useful, and, believe it or not, shared memory and atomics.  
+
+And ES2018.  You can see what's happening where on the Ecmascript/TC39 GitHub repository.
+
+What's in ES2018?  Who knows? SIMD extensions, async iteration, more work on regexes, promise extensions?  Current list is on Github - https://github.com/tc39/proposals
 
 "Yea, well, I could write a shim/monkeypatch/function that does that ..."
 And yea you could.  By the nature of things, your JavaScript execution environment is always going to be behind your development environment. (Just like Java! and C#! and C++! and ...)  Tools like Babel and Traceur allow us to work with the latest features, while targetting your existing runtime ecosystem.  And yea, while you could write a shim, I'm happy to let someone else do it for me, because a) I'm lazy and b) they'll probably make a better job of it :)
 
-(As a little "oh look at the circularity", one of the proposed new features for ES8 is macros.  Not crappy C style text replacement macros. No. Lisp style meta-programming macros.  So maybe, 20 years after Eich's mad fortnight, we will end up with Scheme in the browser after all ...)
-
-So, if you're not already, get using ES6 in your toolchain.  And once you have, start turning it up to 7.
+So, if you're not already, get using ES6 in your toolchain.  And once you have, start turning it up to 7 or 8, or 11.
 
 JavaScript has, as I hope I've shown, been quite profoundly changed by ES6, but that's only really the beginning.
 --
