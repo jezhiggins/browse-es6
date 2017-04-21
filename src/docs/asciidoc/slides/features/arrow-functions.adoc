@@ -1,3 +1,4 @@
+[data-transition='None']
 == Arrow Functions
 
 ----
@@ -37,6 +38,7 @@ Functions in JavaScript are kind of bad non-method functions, because of _this_,
 So we have, as JavaScript practioners, if that doesn't sound too high-faluting, have come up with various ways around that
 --
 
+[data-transition='None']
 === Arrow Functions
 
 ----
@@ -59,6 +61,7 @@ We assign _this_ to another variable say, often called _that_, because that's is
 
 --
 
+[data-transition='None']
 === Arrow Functions
 
 ----
@@ -78,6 +81,7 @@ Multiplier.prototype.multiplyArray = function(arr) {
 Maybe our api let's us pass in the _this_ we want to be applied - how weird is that?
 --
 
+[data-transition='None']
 === Arrow Functions
 
 ----
@@ -97,6 +101,7 @@ Multiplier.prototype.multiplyArray = function(arr) {
 We can bind _this_ into the function.
 --
 
+[data-transition='None']
 === Arrow Functions
 
 ----
@@ -119,6 +124,7 @@ Multiplier.prototype.multiplyArray = function(arr) {
 Or, and I accept this probably isn't the place you'd use something like this, we use an immediately invoked function expression - we write a function that returns a function that captures the values we want.  And we do this a lot - we're constantly sitting on callback and promises and futures and all the rest of it.  It doesn't matter how many times you see something like the code here, you still have to stop and have a look and it take you a moment to think about.  And if you've another callback inside this callback, it can all start getting very confused.
 --
 
+[data-transition='None']
 === Arrow Functions
 
 ----
