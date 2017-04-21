@@ -1,5 +1,5 @@
 = A Browse Through ES6
-Jez Higgins, @jezhiggins
+Jez Higgins 
 
 :revealjs_center: false
 :revealjs_progress: false
