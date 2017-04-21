@@ -132,7 +132,7 @@ Or, and I accept this probably isn't the place you'd use something like this, we
 function Multiplier(factor) { this.factor = factor; }
 
 Multiplier.prototype.multiplyArray = function(arr) {
-  return arr.map(x => this.factor.x);
+  return arr.map(x => this.factor * x);
 };
 
 ----
