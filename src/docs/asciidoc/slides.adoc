@@ -1,4 +1,4 @@
-= A Browse Through ES6
+= A Browse Through ES2016
 Jez Higgins 
 
 :revealjs_center: false
