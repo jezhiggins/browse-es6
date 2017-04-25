@@ -5,7 +5,7 @@
 
 const arr = [1, 2, 3];
 
-const squares = arr.map(x => x*x*x);
+const cubes = arr.map(x => x*x*x);
 
 ----
 
@@ -25,9 +25,9 @@ They support both expression bodies or statement bodies.
 
 const arr = [1, 2, 3];
 
-const squares = arr.map(x => x*x*x);
+const cubes = arr.map(x => x*x*x);
 
-squares.forEach(x => { console.log(x); });
+cubes.forEach(x => { console.log(x); });
 
 ----
 
