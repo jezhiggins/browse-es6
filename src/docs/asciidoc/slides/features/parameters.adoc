@@ -55,6 +55,7 @@ It's only called if we do this.
 The default is pretty nice - no more checking for undefined, it's right there in the function declaration rather than hidden.  If we use a variable in here, it's actually parameterisable in a way that internally defined defaults aren't
 --
 
+[data-transition='None']
 === Parameters
 
 ----
@@ -72,6 +73,7 @@ Here's our rest operator again.  This is just like the destructuring we just saw
 You can use this to completely replace the use of magical _arguments_ variable, and I would recommend you do.
 --
 
+[data-transition='None']
 === Parameters
 
 ----
@@ -108,6 +110,7 @@ rotateCrank();
 By doing so, we can pass as many or as few parameters as we want.  This is super-cool, if you need it.
 --
 
+[data-transition='None']
 === Parameters
 
 ----
@@ -125,6 +128,7 @@ One final thing on parameters.  While the destructuring lets us manipulate how w
 There's our three dots again, but now they have a different name - this is the spread operator.  Spread opens out the array, in fact the iterable, into individual parameters.
 --
 
+[data-transition='None']
 === Parameters
 
 ----
