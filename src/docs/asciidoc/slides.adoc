@@ -1,5 +1,4 @@
 = A Browse Through ES2016
-Jez Higgins 
 
 :revealjs_center: false
 :revealjs_progress: false
