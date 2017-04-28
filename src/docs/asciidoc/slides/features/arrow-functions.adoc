@@ -35,6 +35,8 @@ cubes.forEach(x => { console.log(x); });
 --
 Functions in JavaScript are kind of bad non-method functions, because of _this_, the magical _this_ parameter.  The _this_ parameter is always present, but you can't trust it.  _this_ comes from the calling context, which was fine when just had a few little objects with a couple of methods on them, but as we all know from _what the hell is happening experience_ can break down, for instance, with callbacks.
 
+Crockford/YUI team - "When a function is called with the function invocation pattern, its this is not bound to the outer function's this as we would hope, but is instead bound to the global object, which is horrible. (ES5/strict binds the inner function's this to undefined, which is much less wrong than binding the global object, but is still not right.) The workarounds for this include the use of bind functions and riddles like"
+
 So we have, as JavaScript practioners, if that doesn't sound too high-faluting, have come up with various ways around that
 --
 
@@ -140,4 +142,49 @@ Multiplier.prototype.multiplyArray = function(arr) {
 [NOTE.speaker]
 --
 And now you can write this code instead.  In the previous examples, this is dynamic which totally weird.  In Arrow functions this (and super, new.target, and arguments [but arguments you should expunge]) are bound lexically.  The value is determined by the surrounding scope, and it is fixed. It can not be changed by accident or on purpose.  Even if you call bind on an arrow function, you can't change the this.
+--
+
+=== Arrow Functions
+
+----
+
+    () => { . . . . }
+
+   (x) => { . . . . }
+
+    x  => { . . . . }
+
+(x, y) => { . . . . }
+
+----
+
+[NOTE.speaker]
+--
+For completeness then, we only need brakcets when there's something to bracket.  If it only takes a single parameter, you can omit the brackets.  I think you should, because it reads better.
+
+Other letters  (and indeed identifiers) are available.
+
+You can, of course, combine the parameters with all the things we looked at before - destructuring, rest operator, default values, the whole bit.
+
+No line breaks are allowed after the parameter definition.
+
+--
+
+=== Arrow
+
+----
+
+    x => { return x * x; }
+
+    x => x * x
+
+----
+
+[NOTE.speaker]
+--
+The statement block behaves like a normal function body, if you need to use return if you want to hand back a value, you need the semicolons, all that.
+
+With an expression body, the value of the expression is implicitly returned and we can do away with all the extra scaffolding.
+
+Most of the time, *most* of the time, we'll be writing expression bodies.
 --
