@@ -132,7 +132,8 @@ I've given a version of this talk before, and in that I blythely asserted that t
 ----
 const arr = [1,2,3,4,5, ........, n];
 
-const first_even_number = from(arr).filter(n => n%2==0).first();
+const first_even_number =
+    from(arr).filter(n => n%2==0).first();
 ----
 
 [NOTE.speaker]
@@ -163,11 +164,8 @@ const first_even_number =
 --
 This generator produces an infinite sequence but, because it's iterable, we can drop it into the same processing pipeline and do something we couldn't so easily do before.
 
-Here I've been using a generator to implement an iterator, but you could also use them for observers, or for cooperative multi-tasking via coroutines (producer/consumer pairs).  That's beyond what we've got time for here, but just lodge that the possibilities are there.
+Apologies that this code example exceeds the Jagger limit.
 
-So for/of loops over anything iterable - built-in things like Arrays, Strings, Maps, Sets - but also anything else that we care to write - trees, queues, data sources.  It can also loop of sequences of unknown or infinite length.  Now that is new, and is kind of exciting.
-
-Different libraries that we use often have a kind of impedance mismatch - as we go forward iterable/iterator will start to break those down, to ease that friction.
 --
 
 [data-transition='None']
@@ -184,7 +182,7 @@ function* lucas_sequence() {
 } // lucas_sequence
 
 const first_six_digit_lucas_number =
-   from(lucas_sequence()).filter(n => n.toString().length == 6).first();
+    from(lucas_sequence()).filter(n => n.toString().length == 6).first();
 ----
 
 [NOTE.speaker]
@@ -193,10 +191,127 @@ This generator produces an infinite sequence but, because it's iterable, we can 
 
 Result here is, obviously, 103682
 
-So for/of loops over anything iterable - built-in things like Arrays, Strings, Maps, Sets - but also anything else that we care to write - trees, queues, data sources.  It can also loop of sequences of unknown or infinite length.  Now that is new, and is kind of exciting.
+So for/of loops over anything iterable - built-in things like Arrays, Strings, Maps, Sets - but also anything else that we care to write - trees, queues, data sources.  It can also loop of sequences of unknown or infinite length.  Now that is new, and is kind of exciting.  (Andy Balaam evaluating expression trees, left side then right side - you could yield a left hand side generator, then a right hand side generator).
 
 Different libraries that we use often have a kind of impedance mismatch - as we go forward iterable/iterator will start to break those down, to ease that friction.
 
-Here I've been using a generator to implement an iterator, but you could also use them for observers, or for cooperative multi-tasking via coroutines (producer/consumer pairs).  That's beyond what we've got time for here, but just lodge that the possibilities are there.
+Here I've been using a generator to implement an iterator, but you could also use them for observers, or for cooperative multi-tasking via coroutines (producer/consumer pairs).
 
+I'd originally written "That's beyond what we've got time for here, but just lodge that the possibilities are there" but I was in Robert Smallshire's talk on Thursday and he whipped up coroutines using Python generators.  So I took his code, added in some curly brackets, took out the colons, and it all just worked.  It was like magic.
+--
+
+[data-transition='None']
+=== Coroutines ala Smallshire
+
+----
+function* async_search(iterable, async_predicate) {
+    for (const item of iterable)
+        if (yield* async_predicate(item))
+            return item;
+    return null;
+} // async_search
+
+function* lucas_sequence() {
+    let a = 2, b = 1;
+    yield a;
+    while (true) {
+        yield b;
+        [a, b] = [b, a + b];
+    }
+} // lucas_sequence
+
+function* async_is_prime(x) {
+    if (x < 2)
+        return false;
+    for (const i of int_range(2, Math.sqrt(x) + 1)) {
+        if (x % i == 0)
+            return false;
+        yield* async_sleep(0);
+    }
+    return true;
+} // async_is_prime
+
+function* int_range(from, to) {
+    for (let i = from; i <= to; ++i)
+        yield i;
+} // int_range
+
+function* async_print_matches(iterable, async_predicate) {
+    for (const item of iterable) {
+        const matches = yield* async_predicate(item);
+        if (matches)
+            console.log(`Found ${item}`)
+    }
+} // async_print_matches
+
+function* async_repetitive_message(message, interval_seconds) {
+    while (true) {
+        yield* async_sleep(interval_seconds);
+        console.log(message);
+    } //
+} // async_repetitive_message
+
+function* async_sleep(interval_seconds) {
+    const expiry = Date.now() + (interval_seconds * 1000);
+    while (true) {
+        yield;
+        const now = Date.now();
+        if (now >= expiry)
+            break;
+    }
+} // async_sleep
+
+///////////////////////////////////
+class scheduler {
+    constructor() {
+        this.id_ = 0;
+        this.tasks_ = []
+        this.monitor_ = null;
+    }
+
+    add_task(generator) {
+        this.tasks_.push({id: this.id_++, worker: generator});
+    }
+
+    run() {
+        while (this.tasks_.length != 0) {
+            const task = this.tasks_[0];
+            this.tasks_ = this.tasks_.slice(1);
+
+            const step = task.worker.next();
+            if (step.done)
+                console.log(`Task ${task.id} completed with exit value: ${step.value}`);
+            else
+                this.tasks_.push(task);
+        } // while
+    } // run
+} // scheduler
+
+////////////////////////////////////
+const loop = new scheduler();
+
+loop.add_task(async_print_matches(lucas_sequence(), async_is_prime));
+loop.add_task(async_repetitive_message("...", 2));
+
+loop.run();
+
+----
+
+[NOTE.speaker]
+--
+We really don't have time to go into all of this, but I'll whip you through the highlights
+
+Robert put together an async_chronous search - we've got some sequence that we're searching over, and we've got some predicate which is also asynchronous - in this case a mightly inefficient check to see if something is prime.
+
+Javascript doesn't have a range syntax like Python, so I just wrote one.  Having established an sync search, we move onto just printing out the matches - this is like a filter.  So we're going to generate this infinite sequence of numbers and print some of them out.
+
+Similarly, async_repetitive_message prints out something every however often.
+
+So, we've got two generators.
+
+If we put together a trivial round-robin scheduler, we have functioning co-routines.
+
+Let's see it in action!
+
+My life is not as jet setting as Rob's.
 --
