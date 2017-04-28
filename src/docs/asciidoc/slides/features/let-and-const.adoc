@@ -20,24 +20,6 @@ Declaring a variable with `let` rather than `var` introduces with block scope, a
 
 ----
 {
-  var x = 0;
-  // ---
-}
-console.log(x); // NOT AN ERROR!
-----
-
-[NOTE.speaker]
---
-ES6 introduces sane scoping, that actual living humans can understand.
-
-Declaring a variable with `let` rather than `var` introduces with block scope, and it is created and initialised at the point of declaration.  Compare this to the insane scoping of `var` which has function scope, is visible throughout the function regardless of where it is declared, and is only initialised once you get to the declaration.
---
-
-[data-transition="none"]
-=== Block Scope
-
-----
-{
   let x = 0;
   // ---
 }
@@ -50,28 +32,6 @@ ES6 introduces sane scoping, that actual living humans can understand.
 
 Declaring a variable with `let` rather than `var` introduces with block scope, and it is created and initialised at the point of declaration.  Compare this to the insane scoping of `var` which has function scope, is visible throughout the function regardless of where it is declared, and is only initialised once you get to the declaration.
 --
-
-[data-transition="none"]
-=== Block Scope
-
-----
-{
-  console.log(x); // NOT AN ERROR
-  // ---
-  var x = 0;
-  // ---
-}
-----
-
-[NOTE.speaker]
---
-ES6 introduces sane scoping, that actual living humans can understand.
-
-Declaring a variable with `let` rather than `var` introduces with block scope, and it is created and initialised at the point of declaration.  Compare this to the insane scoping of `var` which has function scope, is visible throughout the function regardless of where it is declared, and is only initialised once you get to the declaration.
---
-
-[data-transition="none"]
-=== Block Scope
 
 ----
 {
@@ -87,14 +47,16 @@ Declaring a variable with `let` rather than `var` introduces with block scope, a
 ES6 introduces sane scoping, that actual living humans can understand.
 
 Declaring a variable with `let` rather than `var` introduces with block scope, and it is created and initialised at the point of declaration.  Compare this to the insane scoping of `var` which has function scope, is visible throughout the function regardless of where it is declared, and is only initialised once you get to the declaration.
+
+You know the problem with fake news right, that in order to counter it you have to repeat it, and that helps reenforce it?  I did have some examples in here with var, but I took them all out because I don't even want you to see them.
+
 --
 
 [data-transition="none"]
 === Block Scope
 
 ----
-console.log(x);
-// ---
+
 {
   let x = 0;
   // ---
@@ -103,7 +65,7 @@ console.log(x);
 
 [NOTE.speaker]
 --
-In all these little fragments, I've declared and initialised x in one.  You can also declare and then initialise them separately, but why would you want to.
+In all these little fragments, I've declared and initialised x in one.  You can also declare and then initialise them separately, but why would you want to do that?  Don't do that.
 
 Block scoping also allows for shadowing, as you can in other languages, but again this is sane (or at least relatively so) and behaves in ways you probably already expect.
 --
@@ -159,7 +121,5 @@ y = "Cruel World";  // ERROR
 
 [NOTE.speaker]
 --
-Sorry, you're not going to get away that easily.
-
-Just by themselves, `let` and `const`, can make a really disproportionate difference.  Use them.  Purge `var` from your mind. Use `const` as often as you can  (John McCarthy probably did have this programming thing figured out in the 60s) and use `let` when you really do need a variable.  That's probably less you often that you think.  Using them will make your programs better, especially as they get larger, and help you avoid subtle scoping bugs.
+Just by themselves, `let` and `const`, can make a really disproportionate difference.  Use them.  Purge `var` from your mind. Use `const` as often as you can  (Side note - Lisp bindings are lexically scoped and const. John McCarthy probably did have this programming thing figured out in the 50s) and use `let` when you really do need a variable.  That's probably less you often that you think.  Using them will make your programs better, especially as they get larger, and help you avoid subtle scoping bugs.
 --
