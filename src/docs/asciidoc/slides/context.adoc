@@ -28,7 +28,7 @@ image::brendan-eich.jpg[Brendan Eich]
 
 [NOTE.speaker]
 --
-Brendan Eich - for it is he. He arrived at Netscape in April 1995, specifically to put some kind of scripting language into the browser.  And that language he intended to embed was Scheme.  Just pause there for a moment and ponder where the web and indeed the world might be if that had happened.  But someone somewhere at Netscape had a moment of clarity and, instead, Eich famously took 10 days to create a new language, called Mocha.  In short order that became LiveScript and, following more corporate shenanighans, about three weeks after that JavaScript.  Boom!
+Brendan Eich - for it is he. He arrived at Netscape in April 1995, specifically to put some kind of scripting language into the browser.  He was in his mid-30s so he'd been round the block a bit, but I've not been able to identify anything in his previous work that would mark him out as particularly suited to it.  He'd previously worked at Silicon Graphics so I suspect he'd bumped into Jim Clark somewhere, and Jim had said we need to put a language in this thing, and Brendan had said 'I can do that' so Jim said 'start on Monday'.   Aaaanyway.  And that language he intended to embed was Scheme.  Just pause there for a moment and ponder where the web and indeed the world might be if that had happened.  But someone somewhere at Netscape had a moment of clarity and, instead, Eich famously took 10 days to create a new language, called Mocha.  In short order that became LiveScript and, following more corporate shenanighans, about three weeks after that JavaScript.  Boom!
 
 If you look at the development history of pretty much every widely used language we have today, they typically have *years* of development time put into them.  Java, for instance, had a team working for four years before the first release.  Go, to take a modern example, took at least two years and they had Rob Pike and Ken Thompson on the team.  Compared to that 10 days seems a bit compressed.
 
@@ -48,7 +48,7 @@ Until 2004 thing started to move
 2005 - Google Maps, Opera 9, Firefox 2.0 and things started to go a bit mental
 2006 - Safari
 
-Around this time, JavaScript suddenly got interesting again.  
+Around this time, JavaScript suddenly got interesting again.
 --
 
 === How Did We Get Here?
@@ -71,7 +71,7 @@ image::kelly-javascript.png[And so do someother people]
 [NOTE.speaker]
 --
 
-... in a language people really don't like.  
+... in a language people really don't like.
 
 But, despite all this stuff going on, the language itself was static.  ECMAScript 4 was finally abandoned in 2008, while ECMAScript 5 published at the end of 2009 added strict mode, the trailing comma, getters and setters (which pretty much nobody uses), and a few library methods, most notably for handling JSON.  But, so what?  It was too late - everyone was using jQuery or some other library for that anyway.  Despite some fairly hefty efforts, all we got were a few farts-in-the-web-dev-bath.   After all that time, and after the huge, huge growth in the use of JavaScript - it really is everywhere and in everything! - the language itself was essentially the one that Brendan Eich had splurged out in those few days fourteen/fifteen years earlier.
 
@@ -82,45 +82,50 @@ But now, well now we have ES6!
 
 === JavaScript Oopsys
 
-Weird scoping - Wacky type conversion - Numbers are IEEE 754 double precision floats, but you can do bitwise operations on them as if they were 32 bit integers - Everything's visible - Functions do triple duty - What is _this_? - Semicolon insertion - Prototype inheritance - Equality - Wait? Did you just go global? ...
+Weird scoping - Wacky type conversion - Numbers are IEEE 754 double precision floats, but you can do bitwise operations on them as if they were 32 bit integers - Everything's visible - Functions do triple duty - What is _this_? - Semicolon insertion - Prototype inheritance - Wait? Did you just go global? - Equality...
 
 [NOTE.speaker]
 --
-Array.sort orders alphabetically by default.  Function arguments not checked.
+Triple-duty - subroutines, as methods, as constructors.
+
+Array.sort orders alphabetically by default.  Function arguments not checked, in type or in arity.
 --
 
 === Equals, right
-
-    If Type(x) is the same as Type(y), then
-        If Type(x) is Undefined, return *true*.
-        If Type(x) is Null, return *true*.
-        If Type(x) is Number, then
-            If x is NaN, return false.
-            If y is NaN, return false.
-            If x is the same Number value as y, return *true*.
-            If x is +0 and y is −0, return *true*.
-            If x is −0 and y is +0, return *true*.
-            Return false.
-        If Type(x) is String, then return *true* if x and y are exactly
-	  the same sequence of characters (same length and same characters
-	  in corresponding positions). Otherwise, return false.
-        If Type(x) is Boolean, return *true* if x and y are both true or
+----
+If Type(x) is the same as Type(y), then
+    If Type(x) is Undefined, return true.
+    If Type(x) is Null, return true.
+    If Type(x) is Number, then
+        If x is NaN, return false.
+        If y is NaN, return false.
+        If x is the same Number value as y, return true.
+        If x is +0 and y is −0, return true.
+        If x is −0 and y is +0, return true.
+        Return false.
+    If Type(x) is String, then return true if x and y are exactly
+        the same sequence of characters (same length and same characters
+	in corresponding positions).
+	Otherwise, return false.
+    If Type(x) is Boolean, return true if x and y are both true or
 	  both false. Otherwise, return false.
-        Return true if x and y refer to the same object. Otherwise, return false.
-    If x is null and y is undefined, return true.
-    If x is undefined and y is null, return true.
-    If Type(x) is Number and Type(y) is String,
-      return the result of the comparison x == ToNumber(y).
-    If Type(x) is String and Type(y) is Number,
-      return the result of the comparison ToNumber(x) == y.
-    If Type(x) is Boolean, return the result of the comparison ToNumber(x) == y.
-    If Type(y) is Boolean, return the result of the comparison x == ToNumber(y).
-    If Type(x) is either String or Number and Type(y) is Object,
-      return the result of the comparison x == ToPrimitive(y).
-    If Type(x) is Object and Type(y) is either String or Number,
-      return the result of the comparison ToPrimitive(x) == y.
-    Return false.
-
+    Return true if x and y refer to the same object. Otherwise, return false.
+If x is null and y is undefined, return true.
+If x is undefined and y is null, return true.
+If Type(x) is Number and Type(y) is String,
+    return the result of the comparison x == ToNumber(y).
+If Type(x) is String and Type(y) is Number,
+    return the result of the comparison ToNumber(x) == y.
+If Type(x) is Boolean,
+    return the result of the comparison ToNumber(x) == y.
+If Type(y) is Boolean,
+    return the result of the comparison x == ToNumber(y).
+If Type(x) is either String or Number and Type(y) is Object,
+    return the result of the comparison x == ToPrimitive(y).
+If Type(x) is Object and Type(y) is either String or Number,
+    return the result of the comparison ToPrimitive(x) == y.
+Return false.
+----
 [NOTE.speaker]
 --
 
