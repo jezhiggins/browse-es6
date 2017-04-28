@@ -94,6 +94,28 @@ A generator is a resumeable function.  When you call yield, it suspends at the p
 
 function* returns a generator instance, a generator instance is iterable with yield returning successive values.
 
+Here, twoTimeTables is an iterable object.  The for/of construct is looking for the Symbol.iterator method, then invoking that to get the iterator, then, as I mentioned, invoking next, and all that.
+
+We could, in this case, go directly to the generator.
+--
+
+[data-transition='None']
+=== Generators
+
+----
+function* twoTimesTable() {
+  for (let n = 1; n <= 10; ++n)
+    yield 2*n;
+}
+
+for (const p of twoTimesTable())
+  console.log(p);
+----
+
+[NOTE.speaker]
+--
+Here, we invoke the generator function, get the generator instance, which is an iterator, so for/of is already happy to work with it straightaway.  This is familiar for you Python types, perhaps less for Java or C-sharpers.
+
 What you do in next()/the generator body is entirely up to you.  On the server side, for instance, you might be reading lines from a file, pulling values from a database cursor, something like that.  On the client side, it could be paging though a JSON api, walking the DOM, go crazy.  It doesn't have to be in a loop - you can have multiple yields if you like, just one after another.  There's also a yield* to automatically yield over an iterator, or another generator.  Slightly wackily, you can even pass values into a generator's yield.  That's a bit specialist, and so I'm just going to let you know you can.
 
 One of the particularly cool things about this iterable/iterator protocol is that it lets other, custom, data structures - trees, queues, whatever - or data sources that work in the same way as built ins.  It also opens the door to libraries along the lines of LINQ or Java streams that can operate over arbitrary structures.  If you think of a library like lodash (or, indeed the new Array methods added in ES6 itself), for instance, it has a whole load of really useful functions - find and drop and take and so - but they operate on arrays and return arrays. So have to realise that array - load all your stuff from the database or from your JSON call, or whatever it is, and have it all there.
@@ -146,4 +168,35 @@ Here I've been using a generator to implement an iterator, but you could also us
 So for/of loops over anything iterable - built-in things like Arrays, Strings, Maps, Sets - but also anything else that we care to write - trees, queues, data sources.  It can also loop of sequences of unknown or infinite length.  Now that is new, and is kind of exciting.
 
 Different libraries that we use often have a kind of impedance mismatch - as we go forward iterable/iterator will start to break those down, to ease that friction.
+--
+
+[data-transition='None']
+=== Stand aside Lodash (@robsmallshire remix)
+
+----
+function* lucas_sequence() {
+    let a = 2, b = 1;
+    yield a;
+    while (true) {
+        yield b;
+        [a, b] = [b, a + b];
+    }
+} // lucas_sequence
+
+const first_six_digit_lucas_number =
+   from(lucas_sequence()).filter(n => n.toString().length == 6).first();
+----
+
+[NOTE.speaker]
+--
+This generator produces an infinite sequence but, because it's iterable, we can drop it into the same processing pipeline and do something we couldn't so easily do before.
+
+Result here is, obviously, 103682
+
+So for/of loops over anything iterable - built-in things like Arrays, Strings, Maps, Sets - but also anything else that we care to write - trees, queues, data sources.  It can also loop of sequences of unknown or infinite length.  Now that is new, and is kind of exciting.
+
+Different libraries that we use often have a kind of impedance mismatch - as we go forward iterable/iterator will start to break those down, to ease that friction.
+
+Here I've been using a generator to implement an iterator, but you could also use them for observers, or for cooperative multi-tasking via coroutines (producer/consumer pairs).  That's beyond what we've got time for here, but just lodge that the possibilities are there.
+
 --
