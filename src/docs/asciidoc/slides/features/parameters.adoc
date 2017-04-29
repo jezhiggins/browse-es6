@@ -1,3 +1,4 @@
+[data-transition='None']
 == Parameters
 
 ----
@@ -73,12 +74,35 @@ Here's our rest operator again.  This is just like the destructuring we just saw
 You can use this to completely replace the use of magical _arguments_ variable, and I would recommend you do.
 --
 
+
 [data-transition='None']
 === Parameters
 
 ----
 
-function rotateCrank({ start: 0, end: 0, speed: 0 } = {}) {
+function format(pattern, ...params) {
+  // ---
+}
+
+format("Boring string");
+
+format("%d, %d", 1, 2);
+
+----
+
+[NOTE.speaker]
+--
+Here's our rest operator again.  This is just like the destructuring we just saw - the first parameter we pass will be bound to pattern, everything else gets gathered up into params.
+
+You can use this to completely replace the use of magical _arguments_ variable, and I would recommend you do.
+--
+
+[data-transition='None']
+=== Parameters
+
+----
+
+function waggleArm({ extension: 0, rotation: 180, speed: 1 } = {}) {
   // ---
 }
 
@@ -86,6 +110,8 @@ function rotateCrank({ start: 0, end: 0, speed: 0 } = {}) {
 
 [NOTE.speaker]
 --
+Here, obviously, I've got JavaScript embedded in my industrial robot.
+
 We can actually use destructuring to simulate named parameters.  Here it's combined with default values too. You can put all these different things together.
 --
 
@@ -94,20 +120,22 @@ We can actually use destructuring to simulate named parameters.  Here it's combi
 
 ----
 
-function rotateCrank({ start: 0, end: 360, speed: 1 } = {}) {
+function waggleArm({ extension: 0, rotation: 180, speed: 1 } = {}) {
   // ---
 }
 
-rotateCrank({ end: 90 });
+waggleArm({ extension: 100, rotation: 90, speed: 5 });
 
-rotateCrank({});
+waggleArm({ rotation: 270 });
 
-rotateCrank();
+waggleArm({});
+
+waggleArm();
 ----
 
 [NOTE.speaker]
 --
-By doing so, we can pass as many or as few parameters as we want.  This is super-cool, if you need it.
+By doing so, we can pass as many or as few parameters as we want.  This is super-cool, especially if you have a real robot.
 --
 
 [data-transition='None']
