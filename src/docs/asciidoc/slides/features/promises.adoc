@@ -129,7 +129,7 @@ Promise.all([
   asyncFunc1();
   asyncFunc2();
 ])
-.then(([result1, result2] => {
+.then(([result1, result2]) => {
   // ---
 })
 .catch(error => {
